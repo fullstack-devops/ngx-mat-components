@@ -1,16 +1,16 @@
-# @fullstack-devops/ng-mat-components
+# @fullstack-devops/ngx-mat-components
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/fullstack-devops/ng-mat-components/release.yml?logo=GitHub%20Actions)](#)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/fullstack-devops/ng-mat-components)](https://github.com/fullstack-devops/ng-mat-components/releases)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/fullstack-devops/ngx-mat-components/release.yml?logo=GitHub%20Actions)](#)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/fullstack-devops/ngx-mat-components)](https://github.com/fullstack-devops/ngx-mat-components/releases)
 
 **Downloads:**
 
-[![GitHub release (latest by date)](https://img.shields.io/github/downloads/fullstack-devops/ng-mat-components/latest/total?style=flat&label=GitHub%20downloads%40latest&logo=GitHub)](https://github.com/fullstack-devops/ng-mat-components/pkgs/npm/ng-mat-components)
-[![npm](https://img.shields.io/npm/dw/@fullstack-devops/ng-mat-components?style=flat&label=npm%20downloads&logo=npm)](https://www.npmjs.com/package/@fullstack-devops/ng-mat-components)
+[![GitHub release (latest by date)](https://img.shields.io/github/downloads/fullstack-devops/ngx-mat-components/latest/total?style=flat&label=GitHub%20downloads%40latest&logo=GitHub)](https://github.com/fullstack-devops/ngx-mat-components/pkgs/npm/ngx-mat-components)
+[![npm](https://img.shields.io/npm/dw/@fullstack-devops/ngx-mat-components?style=flat&label=npm%20downloads&logo=npm)](https://www.npmjs.com/package/@fullstack-devops/ngx-mat-components)
 
 **License:**
 
-[![GitHub](https://img.shields.io/github/license/fullstack-devops/ng-mat-components?style=flat)](#)
+[![GitHub](https://img.shields.io/github/license/fullstack-devops/ngx-mat-components?style=flat)](#)
 
 Components for @angular/material
 
@@ -18,11 +18,11 @@ Components for @angular/material
 
 - yarn
   ```shell
-  yarn add @fullstack-devops/ng-mat-components
+  yarn add @fullstack-devops/ngx-mat-components
   ```
 - npm
   ```shell
-  npm install @fullstack-devops/ng-mat-components
+  npm install @fullstack-devops/ngx-mat-components
   ```
 
 ### Installation via GitHub packages
@@ -35,9 +35,9 @@ add to your local `.npmrc` the following line to be able to use this package:
 
 ## Documentation
 
-Live Demo with all current modules at https://fullstack-devops.github.io/ng-mat-components
+Live Demo with all current modules at https://fullstack-devops.github.io/ngx-mat-components
 
-Api Documentation: https://fullstack-devops.github.io/libraries/ng-mat-components.
+Api Documentation: https://fullstack-devops.github.io/libraries/ngx-mat-components.
 
 ## Development server
 

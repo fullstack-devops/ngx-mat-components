@@ -1,5 +1,5 @@
 {
-  "name": "@fullstack-devops/ng-mat-components",
+  "name": "@fullstack-devops/ngx-mat-components",
   "version": "0.0.0-PLACEHOLDER",
   "license": "Apache-2.0",
   "peerDependencies": {
@@ -13,9 +13,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fullstack-devops/ng-mat-components.git"
+    "url": "https://github.com/fullstack-devops/ngx-mat-components.git"
   },
-  "homepage": "https://github.com/fullstack-devops/ng-mat-components",
+  "homepage": "https://github.com/fullstack-devops/ngx-mat-components",
   "description": "Central component repo for angular applications",
   "engines": {
     "node": ">= 18.0.0",
@@ -23,7 +23,7 @@
     "yarn": ">= 1.22.0"
   },
   "bugs": {
-    "url": "https://github.com/fullstack-devops/ng-mat-components/issues"
+    "url": "https://github.com/fullstack-devops/ngx-mat-components/issues"
   },
   "funding": {
     "type": "github sponsors",

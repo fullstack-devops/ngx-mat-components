@@ -2,7 +2,7 @@ import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
 import { Component, OnInit } from '@angular/core';
-import { NavFrameConfig, NavFrameSizing, NavRoutes } from 'projects/ng-mat-components/src/public-api';
+import { NavFrameConfig, NavFrameSizing, NavRoutes } from 'projects/ngx-mat-components/src/public-api';
 
 @Component({
   selector: 'app-root',

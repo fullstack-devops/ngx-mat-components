@@ -14,7 +14,6 @@ projects/ng-nav-frame/README.md
 /node_modules
 npm-debug.log
 yarn-error.log
-yarn.lock
 package-lock.json
 .yarn/
 
@@ -49,4 +48,4 @@ testem.log
 Thumbs.db
 .yarnrc
 package-lock.json
-projects/ng-mat-components/README.md
+projects/ngx-mat-components/README.md

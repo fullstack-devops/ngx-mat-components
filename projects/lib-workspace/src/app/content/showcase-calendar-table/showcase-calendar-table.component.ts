@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarTableEntry } from 'projects/ng-mat-components/src/public-api';
+import { CalendarTableEntry } from 'projects/ngx-mat-components/src/public-api';
 
 @Component({
   selector: 'app-showcase-calendar-table',

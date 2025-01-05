@@ -3,24 +3,24 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-mat-components": {
+    "ngx-mat-components": {
       "projectType": "library",
-      "root": "projects/ng-mat-components",
-      "sourceRoot": "projects/ng-mat-components/src",
+      "root": "projects/ngx-mat-components",
+      "sourceRoot": "projects/ngx-mat-components/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/ng-mat-components/tsconfig.lib.json",
-            "project": "projects/ng-mat-components/ng-package.json"
+            "tsConfig": "projects/ngx-mat-components/tsconfig.lib.json",
+            "project": "projects/ngx-mat-components/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ng-mat-components/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngx-mat-components/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ng-mat-components/tsconfig.lib.json"
+              "tsConfig": "projects/ngx-mat-components/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -28,9 +28,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ng-mat-components/src/test.ts",
-            "tsConfig": "projects/ng-mat-components/tsconfig.spec.json",
-            "karmaConfig": "projects/ng-mat-components/karma.conf.js"
+            "main": "projects/ngx-mat-components/src/test.ts",
+            "tsConfig": "projects/ngx-mat-components/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-mat-components/karma.conf.js"
           }
         }
       }
@@ -104,10 +104,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "lib-workspace:build:production"
+              "buildTarget": "lib-workspace:build:production"
             },
             "development": {
-              "browserTarget": "lib-workspace:build:development"
+              "buildTarget": "lib-workspace:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -115,7 +115,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lib-workspace:build"
+            "buildTarget": "lib-workspace:build"
           }
         },
         "test": {
