@@ -13,7 +13,7 @@ export class FsCalendarService {
   weekStartsOn: StartsOn = 1;
   kwStartsOn: StartsOn = 4;
 
-  constructor(@Inject('FS_DATE_LOCALE') private appLocale: dateFns.Locale) {}
+  constructor(@Inject('FS_DATE_LOCALE') private readonly appLocale: dateFns.Locale) {}
 
   generateMatrix(
     mode: 'monthly' | 'annual',
@@ -250,11 +250,9 @@ export class FsCalendarService {
   getWeekDayNames(): string[] {
     let now = new Date();
     let arr = dateFns.eachDayOfInterval({
-      start: dateFns.startOfWeek(now, { weekStartsOn: this.weekStartsOn }),
-      end: dateFns.endOfWeek(now, { weekStartsOn: this.weekStartsOn }),
+      start: dateFns.startOfWeek(now, { locale: this.appLocale, weekStartsOn: this.weekStartsOn }),
+      end: dateFns.endOfWeek(now, { locale: this.appLocale, weekStartsOn: this.weekStartsOn }),
     });
-    let arrOfDays: string[] = [];
-    arr.map(a => arrOfDays.push(dateFns.format(a, 'EEEEEE', { locale: this.appLocale })));
-    return arrOfDays;
+    return arr.map(a => dateFns.format(a, 'EEEEEE', { locale: this.appLocale }));
   }
 }
