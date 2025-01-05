@@ -12,8 +12,8 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "paths": {
-      "ng-mat-components": [
-        "dist/ng-mat-components"
+      "ngx-mat-components": [
+        "dist/ngx-mat-components"
       ]
     },
     "declaration": false,

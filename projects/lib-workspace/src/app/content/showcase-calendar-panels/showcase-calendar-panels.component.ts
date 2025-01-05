@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarEvent, CalendarExtendedDay, CalendarPanels, CalendarPanelsConfig } from 'projects/ng-mat-components/src/public-api';
+import { CalendarEvent, CalendarExtendedDay, CalendarPanels, CalendarPanelsConfig } from 'projects/ngx-mat-components/src/public-api';
 
 interface CustomTestObj {
   id: number;

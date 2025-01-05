@@ -1,5 +1,5 @@
 /*
- * Public API Surface of ng-mat-components
+ * Public API Surface of ngx-mat-components
  */
 
 export * from './fs-calendar/public-api';

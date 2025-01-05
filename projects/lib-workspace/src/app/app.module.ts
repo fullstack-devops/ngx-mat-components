@@ -17,7 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import * as dateFnsLocales from 'date-fns/locale';
-import { FsCalendarModule, FsCalendarService, FsNavFrameModule } from 'projects/ng-mat-components/src/public-api';
+import { FsCalendarModule, FsCalendarService, FsNavFrameModule } from 'projects/ngx-mat-components/src/public-api';
 import { HomeComponent } from './content/home/home.component';
 import { ShowcaseCalendarPanelsComponent } from './content/showcase-calendar-panels/showcase-calendar-panels.component';
 import { ShowcaseCalendarTableComponent } from './content/showcase-calendar-table/showcase-calendar-table.component';

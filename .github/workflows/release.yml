@@ -36,7 +36,7 @@ jobs:
         run: yarn run build
 
       - name: yarn publish to npmjs
-        working-directory: dist/ng-mat-components
+        working-directory: dist/ngx-mat-components
         run: yarn publish --access public --new-version ${{ needs.create_release.outputs.version }} --no-git-tag-version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_TOKEN }}
@@ -46,7 +46,7 @@ jobs:
         with:
           registry-url: 'https://npm.pkg.github.com'
       - name: yarn publish to GitHub
-        working-directory: dist/ng-mat-components
+        working-directory: dist/ngx-mat-components
         run: yarn publish --access public --new-version ${{ needs.create_release.outputs.version }} --no-git-tag-version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

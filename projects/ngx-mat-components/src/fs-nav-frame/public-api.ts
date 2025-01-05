@@ -1,6 +1,6 @@
 import { FsNavFrameSidebarItemComponent } from './components/fs-nav-frame-sidebar-item/fs-nav-frame-sidebar-item.component';
 /*
- * Public API Surface of ng-mat-components
+ * Public API Surface of ngx-mat-components
  */
 
 export { FsNavFrameContentDirective } from './directives/fs-nav-frame-content.directive';

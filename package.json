@@ -1,5 +1,5 @@
 {
-  "name": "@fullstack-devops/ng-mat-components",
+  "name": "@fullstack-devops/ngx-mat-components",
   "version": "0.0.0-PLACEHOLDER",
   "engines": {
     "node": ">=18.0.0",
@@ -10,8 +10,8 @@
     "ng": "ng",
     "start": "ng serve",
     "start:codespace": "ng serve --disable-host-check",
-    "prebuild": "cp README.md projects/ng-mat-components/",
-    "build": "ng build --project ng-mat-components",
+    "prebuild": "cp README.md projects/ngx-mat-components/",
+    "build": "ng build --project ngx-mat-components",
     "build:workspace": "ng build --project lib-workspace",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
