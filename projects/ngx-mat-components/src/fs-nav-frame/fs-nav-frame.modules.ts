@@ -1,4 +1,4 @@
-import { LucideIconData } from "lucide-angular";
+import { LucideIconData } from 'lucide-angular';
 
 /**
  *  @interface NavFrameConfig

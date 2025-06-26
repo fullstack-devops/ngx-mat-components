@@ -1,7 +1,5 @@
 @use 'sass:color';
 @use 'sass:map';
 
-@forward 'theming' show component-themes,
-core,
-normalize;
+@forward 'theming' show component-themes, core, normalize;
 @forward './styles/fonts/roboto' show roboto;
