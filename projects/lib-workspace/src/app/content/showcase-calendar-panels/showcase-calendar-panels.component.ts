@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { FsCalendarModule } from 'ngx-mat-components';
-import { CalendarEvent, CalendarExtendedDay, CalendarPanels, CalendarPanelsConfig } from 'projects/ngx-mat-components/src/public-api';
+import { CalendarEvent, CalendarExtendedDay, CalendarPanels, CalendarPanelsConfig, FsCalendarModule } from 'projects/ngx-mat-components/src/public-api';
 
 interface CustomTestObj {
   id: number;

@@ -2,15 +2,16 @@ import { ChangeDetectionStrategy, Component, ContentChild, HostBinding, OnDestro
 import { FsNavFrameService, MenuState } from '../services/fs-nav-frame.service';
 
 @Component({
-    selector: 'fs-nav-frame-toolbar',
-    templateUrl: './fs-nav-frame-toolbar.component.html',
-    styleUrls: ['./fs-nav-frame-toolbar.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: {
-        class: 'fs-nav-frame-toolbar',
-    },
-    standalone: false
+  selector: 'fs-nav-frame-toolbar',
+  templateUrl: './fs-nav-frame-toolbar.component.html',
+  styleUrls: ['./fs-nav-frame-toolbar.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'fs-nav-frame-toolbar',
+    'data-component-id': 'fs-nav-frame-toolbar-unique',
+  },
+  standalone: false,
 })
 export class FsNavFrameToolbarComponent implements OnInit, OnDestroy {
   @ContentChild('tbcontent') tbcontent: TemplateRef<any> | undefined;

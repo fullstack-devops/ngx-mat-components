@@ -1,18 +1,17 @@
 import { Component, ContentChild, ElementRef, HostBinding, Input, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map } from 'rxjs';
 import { NavFrameConfig, NavFrameSizing } from './fs-nav-frame.modules';
 import { FsNavFrameService, MenuState } from './services/fs-nav-frame.service';
 
 @Component({
-    selector: 'fs-nav-frame',
-    templateUrl: './fs-nav-frame.component.html',
-    styleUrls: ['./fs-nav-frame.component.scss'],
-    host: {
-        class: 'fs-nav-frame',
-    },
-    standalone: false
+  selector: 'fs-nav-frame',
+  templateUrl: './fs-nav-frame.component.html',
+  styleUrls: ['./fs-nav-frame.component.scss'],
+  host: {
+    class: 'fs-nav-frame',
+    'data-component-id': 'fs-nav-frame-unique',
+  },
+  standalone: false,
 })
 export class FsNavFrameComponent implements OnInit, OnDestroy {
   @Input() navFrameConfig: NavFrameConfig = {
@@ -29,7 +28,11 @@ export class FsNavFrameComponent implements OnInit, OnDestroy {
   profileContentElement!: HTMLElement | null;
   isClosed: boolean = true;
 
-  constructor(private elementRef: ElementRef, private frameService: FsNavFrameService, private titleService: Title) {}
+  constructor(
+    private elementRef: ElementRef,
+    private frameService: FsNavFrameService,
+    private titleService: Title
+  ) {}
 
   ngOnInit(): void {
     this.body!.style.setProperty('--toolbar-height', `${this.sizing.toolbarHeight!}rem`);

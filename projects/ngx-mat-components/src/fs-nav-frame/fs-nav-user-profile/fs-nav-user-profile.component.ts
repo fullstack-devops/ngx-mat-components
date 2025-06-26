@@ -9,6 +9,7 @@ import { FsNavFrameService } from '../services/fs-nav-frame.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         class: 'fs-nav-user-profile',
+    'data-component-id': 'fs-nav-user-profile-unique',
     },
     standalone: false
 })

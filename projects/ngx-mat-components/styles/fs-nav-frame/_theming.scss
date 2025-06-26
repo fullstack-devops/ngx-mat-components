@@ -1,50 +1,55 @@
 @use 'sass:map';
 
-@mixin fs-nav-frame-theme($theme) {
-  // Extract whichever individual palettes you need from the theme.
-  $primary: map.get($theme, primary);
-  $accent: map.get($theme, accent);
-  // Gets the standard material maps of fore/background
-  $background: map.get($theme, 'background');
-  $foreground: map.get($theme, 'foreground');
-
+@mixin fs-nav-frame-theme() {
   .fs-nav-frame-logo {
-    background-color: map.get($background, 'app-bar');
-    color: map.get($foreground, 'text');
+    background: var(--mat-sys-surface-container-high);
+    color: var(--mat-sys-on-surface);
   }
 
   .fs-nav-frame-toolbar {
-    background-color: map.get($background, 'app-bar');
-    color: map.get($foreground, 'text');
+    background: var(--mat-sys-surface-container-high);
+    color: var(--mat-sys-on-surface);
   }
 
   .sidebar {
-    background-color: map.get($background, 'app-bar');
-    color: map.get($foreground, 'text');
-    border-top: 1px solid map.get($foreground, 'divider');
+    background: var(--mat-sys-surface-container);
+    color: var(--mat-sys-on-surface);
+    border-top: 1px solid var(--mat-sys-outline-variant);
+
+    button {
+      background: var(--mat-sys-surface-container);
+      color: var(--mat-sys-on-surface);
+      border: none;
+    }
+
+    button:hover {
+      background: var(--mat-sys-surface-container-highest);
+      color: var(--mat-sys-on-surface);
+    }
   }
 
   .sidebar .fs-nav-user-profile {
-    border-top: 1px solid map.get($foreground, 'divider');
+    border-top: 1px solid var(--mat-sys-outline-variant);
   }
 
-  $nav-link-border: 5px;
+  $nav-link-border: 6px;
 
-  .fs-nav-frame-sidebar-item:has(button.active-link)::after {
+  .fs-nav-frame-sidebar-item:has(button.active-link)::before {
     content: '';
     position: absolute;
     margin-top: calc($nav-link-border / 2);
     left: calc($nav-link-border / 2);
-    z-index: -1;
+    z-index: 0;
     width: calc(100% - $nav-link-border);
     height: calc(var(--sidebar-width-closed) - $nav-link-border);
     border-radius: $nav-link-border;
-    background-color: map.get($primary, 'default');
+    color: var(--mat-button-tonal-label-text-color, var(--mat-sys-on-secondary-container));
+    background-color: var(--mat-button-tonal-container-color, var(--mat-sys-secondary-container));
   }
 
   .fs-nav-frame-content {
-    color: map.get($foreground, 'text');
-    background-color: map.get($background, 'background');
+    background: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
   }
 
   .badge[data-badge]::before {
@@ -61,8 +66,8 @@
     text-align: center;
     line-height: 23px;
 
-    background: map.get($accent, 'default');
-    color: map.get($accent, default-contrast);
+    // background: map.get($accent, 'default');
+    // color: map.get($accent, default-contrast);
 
     width: 22px;
     height: 22px;

@@ -1,6 +1,6 @@
 <div class="fs-calendar-helper" *ngIf="calendar != undefined">
   <ng-container *ngFor="let month of calendar.calendarPanels; let iMonth = index">
-    <div class="fs-calendar-month mat-elevation-z4">
+    <div class="fs-calendar-month mat-mdc-card mdc-card mat-mdc-card-outlined mdc-card--outlined">
       <div class="month-header">
         <button
           mat-icon-button

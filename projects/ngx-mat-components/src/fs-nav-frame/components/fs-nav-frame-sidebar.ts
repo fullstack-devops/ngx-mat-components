@@ -7,6 +7,7 @@ import { FsNavFrameService } from '../services/fs-nav-frame.service';
   template: '<ng-content></ng-content>',
   host: {
     class: 'fs-nav-frame-sidebar',
+    'data-component-id': 'fs-nav-frame-sidebar-unique',
     role: 'navigation',
   },
   encapsulation: ViewEncapsulation.None,

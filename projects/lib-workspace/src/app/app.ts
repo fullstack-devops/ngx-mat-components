@@ -25,7 +25,7 @@ import {
   UserPenIcon,
   CogIcon,
 } from 'lucide-angular';
-import { FsNavFrameModule, FsCalendarModule, NavFrameConfig, NavFrameSizing, NavRoutes } from 'ngx-mat-components';
+import { FsNavFrameModule, FsCalendarModule, NavFrameConfig, NavFrameSizing, NavRoutes } from 'projects/ngx-mat-components/src/public-api';
 
 @Component({
   selector: 'app-root',

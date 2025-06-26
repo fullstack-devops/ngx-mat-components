@@ -4,39 +4,35 @@ fs-nav-frame-sidebar-item {
 }
 
 fs-nav-frame-sidebar-item button {
-  display: inline-block !important;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   height: var(--sidebar-width-closed) !important;
-  min-width: var(--sidebar-width-closed) !important;
 
-  .mdc-button__label {
-    display: inline-flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    overflow: hidden;
+  > i,
+  > span-lucide {
+    z-index: 0;
+    width: calc(var(--sidebar-width-closed) - 16px);
+  }
+
+  > span {
+    z-index: 0;
+    margin-left: 1rem;
+    white-space: nowrap;
     text-overflow: ellipsis;
-    height: var(--sidebar-width-closed) !important;
-
-    > i,
-    > span-lucide {
-      width: calc(var(--sidebar-width-closed) - 16px);
-    }
-
-    > span {
-      margin-left: 1rem;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
   }
 }
 
-.sidebar.opened > fs-nav-frame-sidebar > fs-nav-frame-sidebar-item button .mdc-button__label {
+.sidebar.opened > fs-nav-frame-sidebar > fs-nav-frame-sidebar-item button {
   > span {
     display: block;
   }
 }
-.sidebar:not(.opened) > fs-nav-frame-sidebar > fs-nav-frame-sidebar-item button .mdc-button__label {
+.sidebar:not(.opened) > fs-nav-frame-sidebar > fs-nav-frame-sidebar-item button {
   > span {
     display: none;
   }

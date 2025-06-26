@@ -10,7 +10,7 @@
         <path d="M3 18h13v-2H3v2zm0-5h10v-2H3v2zm0-7v2h13V6H3zm18 9.59L17.42 12 21 8.41 19.59 7l-5 5 5 5L21 15.59z" />
       </svg> -->
       <svg
-       *ngIf="navFrameConfig.logoSrc === '' || navFrameConfig.logoSrc === undefined"
+        *ngIf="navFrameConfig.logoSrc === '' || navFrameConfig.logoSrc === undefined"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
@@ -36,10 +36,10 @@
 
 <div class="sidebar" [class.opened]="!isClosed">
   <!-- Navigation -->
-  <ng-content select="fs-nav-frame-sidebar" [opened]="!isClosed"></ng-content>
+  <ng-content select="fs-nav-frame-sidebar" [class.opened]="!isClosed"></ng-content>
 
   <!-- User Profile -->
-  <ng-content select="fs-nav-user-profile"></ng-content>
+  <ng-content select="fs-nav-user-profile" [class.opened]="!isClosed"></ng-content>
 </div>
 
 <div class="glassplane" [class.opened]="!isClosed" (click)="closeSidebar()"></div>
