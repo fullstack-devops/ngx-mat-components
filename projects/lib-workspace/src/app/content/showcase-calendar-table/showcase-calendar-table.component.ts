@@ -1,10 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { CalendarTableEntry } from 'projects/ngx-mat-components/src/public-api';
+import { MatCardModule } from '@angular/material/card';
+import { CalendarTableEntry, FsCalendarModule } from 'projects/ngx-mat-components/src/public-api';
 
 @Component({
   selector: 'app-showcase-calendar-table',
+  imports: [CommonModule, MatCardModule, FsCalendarModule],
   templateUrl: './showcase-calendar-table.component.html',
-  styleUrls: ['./showcase-calendar-table.component.css'],
 })
 export class ShowcaseCalendarTableComponent implements OnInit {
   today = new Date();

@@ -1,4 +1,4 @@
-<button mat-button [routerLink]="routerLink" routerLinkActive="active-link">
-    <ng-content select="i"></ng-content>
-    <ng-content select="span" class="nav-label"></ng-content>
+<button [routerLink]="routerLink" routerLinkActive="active-link">
+  <ng-content select="i, span-lucide"></ng-content>
+  <ng-content select="span" class="nav-label"></ng-content>
 </button>

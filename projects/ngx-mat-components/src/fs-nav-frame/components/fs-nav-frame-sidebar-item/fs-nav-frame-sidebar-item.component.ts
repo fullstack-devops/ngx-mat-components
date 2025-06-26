@@ -9,7 +9,9 @@ import { FsNavFrameService, MenuState } from '../../services/fs-nav-frame.servic
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'fs-nav-frame-sidebar-item',
+    'data-component-id': 'fs-nav-frame-sidebar-item-unique',
   },
+  standalone: false,
 })
 export class FsNavFrameSidebarItemComponent implements OnInit {
   @Input() routerLink: string | undefined;
@@ -17,8 +19,7 @@ export class FsNavFrameSidebarItemComponent implements OnInit {
 
   closed: boolean = this.frameService.menuState == MenuState.CLOSED;
 
-  constructor(public frameService: FsNavFrameService) {
-  }
+  constructor(public frameService: FsNavFrameService) {}
 
   ngOnInit() {
     this.frameService.menuStateEvent.subscribe(state => {

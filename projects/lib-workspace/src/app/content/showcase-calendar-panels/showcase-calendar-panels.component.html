@@ -1,7 +1,3 @@
-<div style="display: flex; justify-content: space-around">
-  <mat-slide-toggle [(ngModel)]="placeholder">Days placeholder</mat-slide-toggle>
-</div>
-
 <div class="selection">
   <mat-form-field appearance="fill">
     <mat-label>Months before</mat-label>
@@ -16,11 +12,11 @@
     </mat-select>
   </mat-form-field>
   <div>
-    <p>Selected range: {{ range | json }}</p>
+    <mat-slide-toggle [(ngModel)]="placeholder">Days placeholder</mat-slide-toggle>
   </div>
 </div>
 
-<div style="height: 80%">
+<div>
   <fs-calendar-panels
     [placeholderDay]="placeholder"
     [dataSource]="dataSource"
@@ -29,4 +25,9 @@
     [monthsBefore]="monthsBefore"
     [monthsAfter]="monthsAfter"
     (selection)="testMethod($event)"></fs-calendar-panels>
+</div>
+
+<div>
+  <p>Selected range:</p>
+  <pre>{{ range | json }}</pre>
 </div>

@@ -9,7 +9,9 @@ import { FsNavFrameService, MenuState } from '../services/fs-nav-frame.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'fs-nav-frame-toolbar',
+    'data-component-id': 'fs-nav-frame-toolbar-unique',
   },
+  standalone: false,
 })
 export class FsNavFrameToolbarComponent implements OnInit, OnDestroy {
   @ContentChild('tbcontent') tbcontent: TemplateRef<any> | undefined;

@@ -1,24 +1,13 @@
 @use 'styles/fs-calendar';
 @use 'styles/fs-nav-frame';
-
-@mixin all-component-themes($theme) {
-  // Extract whichever individual palettes you need from the theme.
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  // Gets the standard material maps of fore/background
-  $background: map-get($theme, 'background');
-  $foreground: map-get($theme, 'foreground');
-
-  @include fs-calendar.fs-calendar-theme($theme);
-  @include fs-nav-frame.fs-nav-frame-theme($theme);
-
-  .svg-icon svg {
-    fill: map-get($foreground, 'text');
-  }
-
-}
+@use 'sass:map';
 
 @mixin core() {
+  // Include the calendar styles
+  @include fs-calendar.fs-calendar-theme();
+
+  // Include the nav frame styles
+  @include fs-nav-frame.fs-nav-frame-theme();
 
   .glassplane {
     /* From https://css.glass */
@@ -67,6 +56,10 @@
   .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+  }
+
+  svg {
+    color: var(--mat-sys-on-surface);
   }
 }
 

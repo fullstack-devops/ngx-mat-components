@@ -1,5 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { CalendarEvent, CalendarExtendedDay, CalendarPanels, CalendarPanelsConfig } from 'projects/ngx-mat-components/src/public-api';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { CalendarEvent, CalendarExtendedDay, CalendarPanels, CalendarPanelsConfig, FsCalendarModule } from 'projects/ngx-mat-components/src/public-api';
 
 interface CustomTestObj {
   id: number;
@@ -8,8 +13,9 @@ interface CustomTestObj {
 
 @Component({
   selector: 'app-showcase-calendar-panels',
+  imports: [CommonModule, FormsModule, FsCalendarModule, MatSlideToggleModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './showcase-calendar-panels.component.html',
-  styleUrls: ['./showcase-calendar-panels.component.css'],
+  styleUrls: ['./showcase-calendar-panels.component.scss'],
 })
 export class ShowcaseCalendarPanelsComponent implements OnInit {
   range: any;
@@ -83,10 +89,20 @@ export class ShowcaseCalendarPanelsComponent implements OnInit {
 
   constructor() {}
   ngOnInit(): void {
-    console.log(this.dataSource);
+    console.log('ShowcaseCalendarPanelsComponent initialized', this.dataSource);
     this.isLoading = false;
   }
 
+  /**
+   * Handles calendar events by updating the `range` property based on the event type.
+   *
+   * @param event - The calendar event object containing event details. The event can be of type 'range' or 'click'.
+   *   - If the event type is 'range', the method updates the `range` property with the event data.
+   *   - If the event type is 'click', the method also updates the `range` property with the event data.
+   *   - The event object may contain additional information such as start and end dates, or metadata relevant to the calendar interaction.
+   *
+   * Logs the received event to the console for debugging purposes.
+   */
   testMethod(event: CalendarEvent) {
     switch (event.type) {
       case 'range':
@@ -96,6 +112,6 @@ export class ShowcaseCalendarPanelsComponent implements OnInit {
         this.range = event;
         break;
     }
-    console.log(event);
+    console.log('Received event:', event);
   }
 }

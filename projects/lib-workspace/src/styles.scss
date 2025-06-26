@@ -2,14 +2,24 @@
 @use '../../ngx-mat-components' as fsc;
 @use './styling/palettes';
 
-@import 'material-icons/iconfont/material-icons.scss';
-
-@include mat.core();
+@include mat.app-background();
 
 @include fsc.normalize();
 @include fsc.core();
 @include fsc.roboto();
 
+// https://material.angular.dev/guide/theming#prebuilt-color-palettes
+html {
+  color-scheme: light;
+  @include mat.theme(
+    (
+      color: mat.$green-palette,
+      typography: Roboto-local,
+      density: 0,
+    )
+  );
+}
+/* 
 $my-typography: mat.m2-define-typography-config(
   $font-family: 'Roboto-local',
 );
@@ -47,7 +57,7 @@ $light-theme: mat.m2-define-light-theme(
   // typography and density styles.
   @include mat.all-component-colors($light-theme);
   @include fsc.all-component-themes($light-theme);
-}
+} */
 
 html * {
   font-family: 'Roboto-local';

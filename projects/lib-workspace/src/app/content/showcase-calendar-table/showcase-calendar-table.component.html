@@ -1,9 +1,18 @@
 <mat-card class="flex-row-wrap" style="margin-bottom: 0.25rem">
-  <div>
-    <p>Selected month: {{ month + 1 }}, Selected year: {{ year }}</p>
-  </div>
+  <mat-card-content>
+    <!-- Hint Month is zero indexed! -->
+    <span>
+      Selected month:
+      <strong>{{ month + 1 }}</strong>
+      ; Selected year:
+      <strong>{{ year }}</strong>
+    </span>
+  </mat-card-content>
 </mat-card>
 
-<fs-calendar-table class="mat-elevation-z2" [(month)]="month" [(year)]="year" [dataSource]="calTableData">
+<fs-calendar-table
+  [(month)]="month"
+  [(year)]="year"
+  [dataSource]="calTableData">
   <fs-calendar-table-name>Persons</fs-calendar-table-name>
 </fs-calendar-table>

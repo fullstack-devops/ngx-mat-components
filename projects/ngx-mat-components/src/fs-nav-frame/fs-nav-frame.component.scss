@@ -17,6 +17,19 @@
     justify-content: center;
     align-items: center;
 
+    button {
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        width: 36px;
+        height: 36px;
+        stroke-width: 1.5;
+      }
+    }
+
     .logo-picture {
       background-size: cover;
       height: 40px;
@@ -81,6 +94,13 @@
 
   display: grid;
   grid-template-rows: 1fr var(--sidebar-width-closed);
+
+  overflow: hidden; // Verhindert, dass der Text sofort sichtbar ist
+
+  ul {
+    opacity: 0; // Startet unsichtbar
+    transition: opacity 0.3s ease-in-out; // Sanfte Einblendung
+  }
 }
 
 ul {
@@ -98,7 +118,9 @@ ul {
   padding: 1rem;
   transition: all 0.3s ease-in-out;
   overflow: auto;
-  box-shadow: inset 5px 2px 4px -1px rgba(0, 0, 0, 0.2), 4px 4px 5px 0px rgba(0, 0, 0, 0.14);
+  box-shadow:
+    inset 5px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.14);
 }
 
 .glassplane.opened {
