@@ -30,7 +30,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/lib-workspace
+          path: dist/lib-workspace/browser
   deploy:
     needs: build-demo
     permissions:
