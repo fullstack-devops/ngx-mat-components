@@ -4,12 +4,13 @@ import { CalendarEvent, CalendarExtendedDay, CalendarPanels, CalendarPanelSum } 
 import { FsCalendarService } from '../services/fs-calendar.service';
 
 @Component({
-  selector: 'fs-calendar-panels',
-  templateUrl: './calendar-panels.component.html',
-  styleUrls: ['./calendar-panels.component.scss'],
-  host: {
-    class: 'fs-calendar-panels',
-  },
+    selector: 'fs-calendar-panels',
+    templateUrl: './calendar-panels.component.html',
+    styleUrls: ['./calendar-panels.component.scss'],
+    host: {
+        class: 'fs-calendar-panels',
+    },
+    standalone: false
 })
 export class FsCalendarPanelsComponent implements OnInit {
   private _dataSource: CalendarPanels<any> = {

@@ -1,11 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-showcase-nav-frame',
+  imports: [CommonModule, MatButtonModule, MatDialogModule],
   templateUrl: './showcase-nav-frame.component.html',
-  styleUrls: ['./showcase-nav-frame.component.css'],
 })
 export class ShowcaseNavFrameComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
@@ -26,7 +27,6 @@ export class ShowcaseNavFrameComponent implements OnInit {
 @Component({
   selector: 'dialog-content-example-dialog',
   templateUrl: 'dialog-content-example-dialog.html',
-  standalone: true,
   imports: [MatDialogModule, MatButtonModule],
 })
 export class DialogContentExampleDialog {}

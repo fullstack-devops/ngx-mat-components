@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -21,7 +19,7 @@ import { FsNavFrameToolbarComponent } from './nav-frame-toolbar/fs-nav-frame-too
 import { FsNavFrameService } from './services/fs-nav-frame.service';
 
 @NgModule({
-  imports: [CommonModule, BrowserModule, BrowserAnimationsModule, RouterModule, FsNavFrameSidebar, MatButtonModule],
+  imports: [CommonModule, RouterModule, FsNavFrameSidebar, MatButtonModule],
   exports: [
     FsNavFrameComponent,
     FsNavFrameToolbarComponent,

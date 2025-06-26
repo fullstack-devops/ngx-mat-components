@@ -1,3 +1,5 @@
+import { LucideIconData } from "lucide-angular";
+
 /**
  *  @interface NavFrameConfig
  *
@@ -28,7 +30,7 @@ export interface NavItem {
  *
  */
 export interface Navigation {
-  icon: string;
+  icon: any; // icon can be a string (e.g. 'home') or an SVG icon reference
   title: string;
   path: string;
   description: string;

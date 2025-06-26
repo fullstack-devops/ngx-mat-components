@@ -6,12 +6,13 @@ import { NavFrameConfig, NavFrameSizing } from './fs-nav-frame.modules';
 import { FsNavFrameService, MenuState } from './services/fs-nav-frame.service';
 
 @Component({
-  selector: 'fs-nav-frame',
-  templateUrl: './fs-nav-frame.component.html',
-  styleUrls: ['./fs-nav-frame.component.scss'],
-  host: {
-    class: 'fs-nav-frame',
-  },
+    selector: 'fs-nav-frame',
+    templateUrl: './fs-nav-frame.component.html',
+    styleUrls: ['./fs-nav-frame.component.scss'],
+    host: {
+        class: 'fs-nav-frame',
+    },
+    standalone: false
 })
 export class FsNavFrameComponent implements OnInit, OnDestroy {
   @Input() navFrameConfig: NavFrameConfig = {

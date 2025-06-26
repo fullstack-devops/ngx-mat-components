@@ -2,14 +2,15 @@ import { ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef, ViewChi
 import { FsNavFrameService, MenuState } from '../../services/fs-nav-frame.service';
 
 @Component({
-  selector: 'fs-nav-frame-sidebar-item',
-  templateUrl: './fs-nav-frame-sidebar-item.component.html',
-  styleUrls: ['./fs-nav-frame-sidebar-item.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'fs-nav-frame-sidebar-item',
-  },
+    selector: 'fs-nav-frame-sidebar-item',
+    templateUrl: './fs-nav-frame-sidebar-item.component.html',
+    styleUrls: ['./fs-nav-frame-sidebar-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        class: 'fs-nav-frame-sidebar-item',
+    },
+    standalone: false
 })
 export class FsNavFrameSidebarItemComponent implements OnInit {
   @Input() routerLink: string | undefined;

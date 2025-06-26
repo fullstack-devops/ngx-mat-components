@@ -4,12 +4,13 @@ import { CalendarMonth, CalendarTableEntry } from '../calendar.models';
 import { FsCalendarService } from '../services/fs-calendar.service';
 
 @Component({
-  selector: 'fs-calendar-table',
-  templateUrl: './fs-calendar-table.component.html',
-  styleUrls: ['./fs-calendar-table.component.scss'],
-  host: {
-    class: 'fs-calendar-table',
-  },
+    selector: 'fs-calendar-table',
+    templateUrl: './fs-calendar-table.component.html',
+    styleUrls: ['./fs-calendar-table.component.scss'],
+    host: {
+        class: 'fs-calendar-table',
+    },
+    standalone: false
 })
 export class FsCalendarTableComponent implements OnInit {
   isLoading: boolean = true;

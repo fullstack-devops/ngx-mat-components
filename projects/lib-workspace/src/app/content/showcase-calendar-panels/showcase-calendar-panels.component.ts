@@ -1,4 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FsCalendarModule } from 'ngx-mat-components';
 import { CalendarEvent, CalendarExtendedDay, CalendarPanels, CalendarPanelsConfig } from 'projects/ngx-mat-components/src/public-api';
 
 interface CustomTestObj {
@@ -8,8 +14,8 @@ interface CustomTestObj {
 
 @Component({
   selector: 'app-showcase-calendar-panels',
+  imports: [CommonModule, FormsModule, FsCalendarModule, MatSlideToggleModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './showcase-calendar-panels.component.html',
-  styleUrls: ['./showcase-calendar-panels.component.css'],
 })
 export class ShowcaseCalendarPanelsComponent implements OnInit {
   range: any;

@@ -18,7 +18,8 @@ fs-nav-frame-sidebar-item button {
     text-overflow: ellipsis;
     height: var(--sidebar-width-closed) !important;
 
-    > i {
+    > i,
+    > span-lucide {
       width: calc(var(--sidebar-width-closed) - 16px);
     }
 

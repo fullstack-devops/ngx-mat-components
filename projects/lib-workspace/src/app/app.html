@@ -4,13 +4,13 @@
 
     <fs-nav-frame-toolbar-center>
       <button mat-icon-button>
-        <mat-icon>help</mat-icon>
+        <i-lucide [img]="CircleQuestionMarkIcon" class="my-icon"></i-lucide>
       </button>
       <button mat-icon-button matBadge="3">
-        <mat-icon>article</mat-icon>
+        <i-lucide [img]="NewspaperIcon" class="my-icon"></i-lucide>
       </button>
       <button mat-icon-button>
-        <mat-icon>call</mat-icon>
+        <i-lucide [img]="CogIcon" class="my-icon"></i-lucide>
       </button>
     </fs-nav-frame-toolbar-center>
 
@@ -20,14 +20,14 @@
         <input matInput placeholder="Searching..." />
       </mat-form-field>
       <button mat-icon-button>
-        <mat-icon>notifications</mat-icon>
+        <i-lucide [img]="BellIcon" class="my-icon"></i-lucide>
       </button>
     </fs-nav-frame-toolbar-end>
   </fs-nav-frame-toolbar>
 
   <fs-nav-frame-sidebar>
     <fs-nav-frame-sidebar-item *ngFor="let route of navRoutes" routerLink="{{ route.path }}">
-      <i class="material-icons">{{ route.icon }}</i>
+      <span-lucide [img]="route.icon" class="my-icon"></span-lucide>
       <span>{{ route.title }}</span>
     </fs-nav-frame-sidebar-item>
   </fs-nav-frame-sidebar>
@@ -39,10 +39,10 @@
 
     <fs-nav-user-profile-actions>
       <button mat-icon-button>
-        <i class="material-icons">manage_accounts</i>
+        <i-lucide [img]="UserPenIcon" class="my-icon"></i-lucide>
       </button>
       <button>
-        <i class="material-icons">logout</i>
+        <i-lucide [img]="LogOutIcon" class="my-icon"></i-lucide>
       </button>
     </fs-nav-user-profile-actions>
   </fs-nav-user-profile>
