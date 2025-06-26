@@ -9,8 +9,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MAT_BUTTON_CONFIG } from '@angular/material/button';
 import * as dateFnsLocales from 'date-fns/locale';
-import { FsCalendarService } from 'ngx-mat-components';
 import { APP_BASE_HREF } from '@angular/common';
+import { FsCalendarService } from 'projects/ngx-mat-components/src/public-api';
 
 const locales: any = dateFnsLocales;
 
