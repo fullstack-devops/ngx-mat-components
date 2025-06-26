@@ -1,5 +1,3 @@
-@use 'sass:map';
-
 @mixin fs-nav-frame-theme() {
   .fs-nav-frame-logo {
     background: var(--mat-sys-surface-container-high);
@@ -44,7 +42,7 @@
     height: calc(var(--sidebar-width-closed) - $nav-link-border);
     border-radius: $nav-link-border;
     color: var(--mat-button-tonal-label-text-color, var(--mat-sys-on-secondary-container));
-    background-color: var(--mat-button-tonal-container-color, var(--mat-sys-secondary-container));
+    background: var(--mat-button-tonal-container-color, var(--mat-sys-secondary-container));
   }
 
   .fs-nav-frame-content {

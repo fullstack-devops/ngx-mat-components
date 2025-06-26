@@ -1,95 +1,99 @@
-@use 'sass:map';
-
-@mixin fs-calendar-theme($theme) {
-  // Extract whichever individual palettes you need from the theme.
-  $primary: map.get($theme, primary);
-  $accent: map.get($theme, accent);
-  // Gets the standard material maps of fore/background
-  $background: map.get($theme, 'background');
-  $foreground: map.get($theme, 'foreground');
+@mixin fs-calendar-theme() {
+  .fs-calendar-helper .fs-calendar-month {
+    background-color: var(--mdc-outlined-card-container-color, var(--mat-sys-surface));
+    border-radius: var(--mdc-outlined-card-container-shape, var(--mat-sys-corner-medium));
+    border-width: var(--mdc-outlined-card-outline-width, 1px);
+    border-color: var(--mdc-outlined-card-outline-color, var(--mat-sys-outline-variant));
+    box-shadow: var(--mdc-outlined-card-container-elevation, var(--mat-sys-level0));
+    border-style: solid;
+  }
 
   .fs-calendar-body-today {
-    border: 1px solid map.get($foreground, 'secondary-text');
+    border: 1px solid var(--mat-sys-outline-variant);
   }
-
+  /* 
   .fs-calendar-switches svg {
     fill: map.get($foreground, 'base');
-  }
+  } */
 
-  .placeholderDay {
-    color: map.get($foreground, 'hint-text');
+  .placeholder-day {
+    color: var(--mat-sys-on-surface-variant);
   }
 
   .fs-calendar-panels-table-header tr:first-child {
-    border-bottom: solid 1px map.get($foreground, 'divider');
-    color: map.get($foreground, 'secondary-text');
+    border-bottom: solid 1px var(--mat-sys-outline-variant);
+    // color: map.get($foreground, 'secondary-text');
   }
 
   .kw {
-    border-right: solid 1px map.get($foreground, 'divider');
-    color: map.get($foreground, 'secondary-text');
+    border-right: solid 1px var(--mat-sys-outline-variant);
+    color: var(--mat-sys-on-surface-variant);
   }
 
   .clickable:hover {
-    background-color: map.get($primary, 'lighter');
+    background: var(--mat-sys-surface-container-highest);
+    color: var(--mat-sys-on-surface);
   }
 
   .weekend {
-    background-color: map.get($foreground, 'divider') !important;
+    background: var(--mat-sys-surface-container-low) !important;
   }
 
   .date-between::after,
   .selected-start::after,
   .selected-end::after {
-    border-top: dashed 1px map.get($foreground, 'secondary-text');
-    border-bottom: dashed 1px map.get($foreground, 'secondary-text');
+    border-top: dashed 1px var(--mat-sys-outline-variant);
+    border-bottom: dashed 1px var(--mat-sys-outline-variant);
   }
 
   .selected-set.date-between {
-    color: map.get($primary, 'lighter-contrast');
+    color: var(--mat-sys-on-secondary-container);
   }
 
   .selected-set.date-between::after,
   .selected-set.selected-start::after,
   .selected-set.selected-end::after {
-    background-color: map.get($primary, 'lighter');
+    background: var(--mat-sys-secondary-container);
   }
 
   .selected-set.selected-start,
   .selected-set.selected-end {
-    color: map.get($primary, 'secondary-text');
+    color: var(--mat-sys-on-secondary-container);
   }
 
   .selected-start::before,
   .selected-end::before {
-    background-color: map.get($primary, default);
+    background: var(--mat-sys-secondary-container-);
   }
 
   .blured-days::after {
     content: '';
-    background: radial-gradient(circle at center,
-        map.get($background, 'background') 0,
-        map.get($background, 'background') 12px,
-        transparent 14px,
-        transparent 100%);
+    /* background: radial-gradient(
+      circle at center,
+      map.get($background, 'background') 0,
+      map.get($background, 'background') 12px,
+      transparent 14px,
+      transparent 100%
+    ); */
   }
 
   .fs-calendar-panels-table table thead tr th {
-    border-bottom: solid 1px map.get($foreground, 'divider');
+    border-bottom: solid 1px var(--mat-sys-outline-variant);
   }
 
-  .fs-calendar-table,
+  // not used in material 3
+  /* .fs-calendar-table,
   .fs-calendar-month {
-    background-color: map.get($background, 'card');
-  }
+    // background-color: map.get($background, 'card');
+  } */
 
   .fs-calendar-table .box-base {
-    background-color: map.get($foreground, 'divider');
+    background-color: var(--mat-sys-surface-container-highest);
   }
 
   .fs-calendar-table .date-today {
-    background-color: map.get($primary, default);
+    color: var(--mat-button-tonal-label-text-color, var(--mat-sys-on-secondary-container));
+    background: var(--mat-button-tonal-container-color, var(--mat-sys-secondary-container));
     border-radius: 4px;
-    color: map.get($primary, default-contrast);
   }
 }

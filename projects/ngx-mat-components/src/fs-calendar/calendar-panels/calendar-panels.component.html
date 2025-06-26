@@ -1,15 +1,24 @@
 <div class="fs-calendar-helper" *ngIf="calendar != undefined">
   <ng-container *ngFor="let month of calendar.calendarPanels; let iMonth = index">
-    <div class="fs-calendar-month mat-mdc-card mdc-card mat-mdc-card-outlined mdc-card--outlined">
+    <div class="fs-calendar-month">
       <div class="month-header">
         <button
           mat-icon-button
           (click)="onMonthBackward()"
           class="fs-calendar-switches"
           *ngIf="dataSource.config.switches && dataSource.config.renderMode != 'annual' && iMonth == 0; else elseAfterBackward">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" height="24px">
-            <path d="M0 0h24v24H0V0z" fill="none" />
-            <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-chevron-left-icon lucide-chevron-left">
+            <path d="m15 18-6-6 6-6" />
           </svg>
         </button>
         <ng-template #elseAfterBackward>
@@ -24,9 +33,18 @@
           (click)="onMonthForward()"
           class="fs-calendar-switches"
           *ngIf="dataSource.config.switches && dataSource.config.renderMode != 'annual' && calendar.calendarPanels.length == iMonth + 1; else elseAfterForward">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" height="24px">
-            <path d="M0 0h24v24H0V0z" fill="none" />
-            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-chevron-right-icon lucide-chevron-right">
+            <path d="m9 18 6-6-6-6" />
           </svg>
         </button>
         <ng-template #elseAfterForward>
@@ -106,7 +124,7 @@
                 <!-- PalceholderDays -->
                 <td
                   role="gridcell"
-                  class="fs-calendar-body-cell clickable placeholderDay"
+                  class="fs-calendar-body-cell clickable placeholder-day"
                   tabindex="-1"
                   (click)="onClick(day, 'placeholderDay')"
                   *ngIf="day._meta?.type == 'plHolder' && placeholderDay"

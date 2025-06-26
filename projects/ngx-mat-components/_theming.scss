@@ -4,7 +4,7 @@
 
 @mixin core() {
   // Include the calendar styles
-  // @include fs-calendar.fs-calendar-theme();
+  @include fs-calendar.fs-calendar-theme();
 
   // Include the nav frame styles
   @include fs-nav-frame.fs-nav-frame-theme();

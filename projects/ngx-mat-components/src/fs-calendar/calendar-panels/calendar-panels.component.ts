@@ -124,13 +124,10 @@ export class FsCalendarPanelsComponent implements OnInit {
 
         daysAffected.push(this.selectedDayStart);
         if (daysBetween < 0) {
-          console.log(this.dataSource.data);
           for (let index = 1; index < daysBetween * -1 + 1; index++) {
             let newGeneratedDay = this.calendarService.generateDay(dateFns.addDays(this.selectedDayStart.date, index), []);
             let i = this.dataSource.data.findIndex(sd => dateFns.isSameDay(sd.date, newGeneratedDay.date));
-            console.log('index:', i, newGeneratedDay.date);
             if (i != -1) {
-              console.log('found one match');
               daysAffected.push(this.dataSource.data[i]);
             } else {
               daysAffected.push(newGeneratedDay);
