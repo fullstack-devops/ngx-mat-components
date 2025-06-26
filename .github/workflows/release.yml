@@ -9,6 +9,9 @@ on:
       - 'docs/**'
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/PULL_REQUEST_TEMPLATE.md'
+      - '.github/workflows/build-gh-pages-demo.yaml'
+      - 'CHANGELOG.md'
+      - 'LICENSE'
 
 jobs:
   create_release:

@@ -2,6 +2,14 @@ name: Build PR
 
 on:
   pull_request:
+    branches:
+      - 'main'
+    paths-ignore:
+      - 'docs/**'
+      - '.github/workflows/build-gh-pages-demo.yaml'
+      - 'CHANGELOG.md'
+      - 'README.md'
+      - 'LICENSE'
 
 jobs:
   generate_infos:
