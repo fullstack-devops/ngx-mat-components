@@ -2,6 +2,7 @@ import { Component, ContentChild, ElementRef, HostBinding, Input, OnDestroy, OnI
 import { Title } from '@angular/platform-browser';
 import { NavFrameConfig, NavFrameSizing } from './fs-nav-frame.modules';
 import { FsNavFrameService, MenuState } from './services/fs-nav-frame.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'fs-nav-frame',
@@ -14,6 +15,7 @@ import { FsNavFrameService, MenuState } from './services/fs-nav-frame.service';
   standalone: false,
 })
 export class FsNavFrameComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
   @Input() navFrameConfig: NavFrameConfig = {
     appName: '',
   };
@@ -39,7 +41,7 @@ export class FsNavFrameComponent implements OnInit, OnDestroy {
     this.body!.style.setProperty('--sidebar-width-closed', `${this.sizing.sidebarWidthClosed!}rem`);
     this.body!.style.setProperty('--sidebar-width-opened', `${this.sizing.sidebarWidthOpened!}rem`);
 
-    this.frameService.menuStateEvent.subscribe((state: MenuState) => {
+    this.frameService.menuStateEvent.pipe(takeUntil(this.destroy$)).subscribe((state: MenuState) => {
       if (state == MenuState.OPENED) {
         this.frameService.menuState = MenuState.OPENED;
         this.isClosed = false;
@@ -61,7 +63,8 @@ export class FsNavFrameComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.frameService.menuStateEvent.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   toggleSidemenu() {

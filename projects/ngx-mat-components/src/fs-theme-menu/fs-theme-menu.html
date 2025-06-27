@@ -1,0 +1,36 @@
+<button mat-icon-button [matMenuTriggerFor]="colorSchemeMenu">
+  <ng-content select=".icon, i-lucide"></ng-content>
+</button>
+
+<mat-menu #colorSchemeMenu="matMenu">
+  <button
+    mat-menu-item
+    role="menuitemradio"
+    class="theme-select-button"
+    [attr.aria-checked]="isSelected(FsThemeColorSchemes.Auto)"
+    (click)="onColorSchemeChange(FsThemeColorSchemes.Auto)">
+    <fs-check-svg [active]="isSelected(FsThemeColorSchemes.Auto)"></fs-check-svg>
+    <span>System Preference</span>
+    <fs-theme-icon [theme]="FsThemeColorSchemes.Auto"></fs-theme-icon>
+  </button>
+  <button
+    mat-menu-item
+    role="menuitemradio"
+    class="theme-select-button"
+    [attr.aria-checked]="isSelected(FsThemeColorSchemes.Light)"
+    (click)="onColorSchemeChange(FsThemeColorSchemes.Light)">
+    <fs-check-svg [active]="isSelected(FsThemeColorSchemes.Light)"></fs-check-svg>
+    <span>Light</span>
+    <fs-theme-icon [theme]="FsThemeColorSchemes.Light"></fs-theme-icon>
+  </button>
+  <button
+    mat-menu-item
+    role="menuitemradio"
+    class="theme-select-button"
+    [attr.aria-checked]="isSelected(FsThemeColorSchemes.Dark)"
+    (click)="onColorSchemeChange(FsThemeColorSchemes.Dark)">
+    <fs-check-svg [active]="isSelected(FsThemeColorSchemes.Dark)"></fs-check-svg>
+    <span>Dark</span>
+    <fs-theme-icon [theme]="FsThemeColorSchemes.Dark"></fs-theme-icon>
+  </button>
+</mat-menu>

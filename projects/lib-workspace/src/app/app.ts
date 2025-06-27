@@ -24,8 +24,9 @@ import {
   NewspaperIcon,
   UserPenIcon,
   CogIcon,
+  PaintBucketIcon,
 } from 'lucide-angular';
-import { FsNavFrameModule, FsCalendarModule, NavFrameConfig, NavFrameSizing, NavRoutes } from 'projects/ngx-mat-components/src/public-api';
+import { FsNavFrameModule, FsCalendarModule, NavFrameConfig, NavFrameSizing, NavRoutes, FsThemeMenu } from 'projects/ngx-mat-components/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -47,6 +48,7 @@ import { FsNavFrameModule, FsCalendarModule, NavFrameConfig, NavFrameSizing, Nav
     /* Lib modules */
     FsNavFrameModule,
     FsCalendarModule,
+    FsThemeMenu,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -59,6 +61,7 @@ export class App {
   readonly UserPenIcon = UserPenIcon;
   readonly LogOutIcon = LogOutIcon;
   readonly CogIcon = CogIcon;
+  readonly PaintBucketIcon = PaintBucketIcon;
 
   navFrameConfig: NavFrameConfig = {
     appName: 'Demo App',

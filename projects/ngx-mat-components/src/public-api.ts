@@ -4,3 +4,4 @@
 
 export * from './fs-calendar/public-api';
 export * from './fs-nav-frame/public-api';
+export * from './fs-theme-menu/public-api';
