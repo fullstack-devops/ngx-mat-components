@@ -34,7 +34,7 @@
 
 <ng-content select="fs-nav-frame-toolbar"></ng-content>
 
-<div class="sidebar" [class.opened]="!isClosed">
+<div class="sidebar" [class.opened]="!isClosed" (click)="closeSidebar()">
   <!-- Navigation -->
   <ng-content select="fs-nav-frame-sidebar" [class.opened]="!isClosed"></ng-content>
 

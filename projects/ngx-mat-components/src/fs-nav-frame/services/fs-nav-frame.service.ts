@@ -18,13 +18,16 @@ export class FsNavFrameService {
     sidebarWidthOpened: 18,
   };
 
-  constructor() {}
-
   switchMenuState() {
     if (this.menuState == MenuState.OPENED) {
       this.menuStateEvent.emit(MenuState.CLOSED);
     } else {
       this.menuStateEvent.emit(MenuState.OPENED);
     }
+  }
+
+  changeMenuStateToClosed() {
+    this.menuState = MenuState.CLOSED;
+    this.menuStateEvent.emit(MenuState.CLOSED);
   }
 }

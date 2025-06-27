@@ -1,0 +1,33 @@
+.theme-icon {
+  width: 24px;
+  height: 24px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    border: solid 1px var(--mat-sys-outline-variant);
+  }
+
+  .fill-background-light {
+    color-scheme: light;
+    fill: var(--mat-sys-background);
+  }
+  .fill-background-dark {
+    color-scheme: dark;
+    fill: var(--mat-sys-background);
+  }
+
+  svg.light {
+    .fill-primary {
+      color-scheme: light;
+      fill: var(--mat-sys-primary);
+    }
+  }
+  svg.dark {
+    .fill-primary {
+      color-scheme: dark;
+      fill: var(--mat-sys-primary);
+    }
+  }
+}

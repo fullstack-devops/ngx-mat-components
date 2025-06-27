@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ContentChild, HostBinding, OnDestroy, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { FsNavFrameService, MenuState } from '../services/fs-nav-frame.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'fs-nav-frame-toolbar',
@@ -14,6 +15,7 @@ import { FsNavFrameService, MenuState } from '../services/fs-nav-frame.service';
   standalone: false,
 })
 export class FsNavFrameToolbarComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
   @ContentChild('tbcontent') tbcontent: TemplateRef<any> | undefined;
 
   @HostBinding('class') openedClass = '';
@@ -21,7 +23,7 @@ export class FsNavFrameToolbarComponent implements OnInit, OnDestroy {
   constructor(private frameService: FsNavFrameService) {}
 
   ngOnInit() {
-    this.frameService.menuStateEvent.subscribe((state: MenuState) => {
+    this.frameService.menuStateEvent.pipe(takeUntil(this.destroy$)).subscribe((state: MenuState) => {
       if (state == MenuState.OPENED) {
         this.openedClass = 'opened';
       } else {
@@ -30,7 +32,8 @@ export class FsNavFrameToolbarComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.frameService.menuStateEvent.unsubscribe();
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

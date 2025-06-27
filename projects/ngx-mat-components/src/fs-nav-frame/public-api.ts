@@ -1,4 +1,3 @@
-import { FsNavFrameSidebarItemComponent } from './components/fs-nav-frame-sidebar-item/fs-nav-frame-sidebar-item.component';
 /*
  * Public API Surface of ngx-mat-components
  */

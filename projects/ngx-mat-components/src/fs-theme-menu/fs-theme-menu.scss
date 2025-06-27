@@ -1,0 +1,25 @@
+::ng-deep .mat-mdc-menu-item-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  span {
+    width: 100%;
+    
+  }
+}
+
+.fs-check-svg {
+  margin-right: var(--mat-menu-item-spacing, 12px);
+  height: var(--mat-menu-item-icon-size, 24px);
+  width: var(--mat-menu-item-icon-size, 24px);
+  margin-left: 0;
+
+}
+
+.fs-theme-icon {
+  margin-right: 0;
+  margin-left: 1rem;
+  order: 1;
+}
