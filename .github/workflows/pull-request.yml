@@ -11,6 +11,10 @@ on:
       - 'README.md'
       - 'LICENSE'
 
+concurrency:
+  group: 'pull-request-build-${{ github.event.pull_request.number }}'
+  cancel-in-progress: true
+
 jobs:
   generate_infos:
     uses: fullstack-devops/git-workflows/.github/workflows/generate-build-infos.yml@main
