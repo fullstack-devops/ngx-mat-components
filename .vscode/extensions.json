@@ -5,7 +5,6 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "PKief.material-icon-theme",
-    "Mikael.Angular-BeastCode",
-    "bradlc.vscode-tailwindcss"
+    "Mikael.Angular-BeastCode"
   ]
 }
