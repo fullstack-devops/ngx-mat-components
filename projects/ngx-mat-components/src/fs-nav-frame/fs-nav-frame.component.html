@@ -27,8 +27,12 @@
     </button>
   </div>
   <div class="app-info-wrapper" [class.opened]="!isClosed">
-    <span class="app-name" *ngIf="!isClosed">{{ navFrameConfig.appName }}</span>
-    <span class="app-version" *ngIf="!isClosed">{{ navFrameConfig.appVersion }}</span>
+    @if (!isClosed) {
+      <span class="app-name">{{ navFrameConfig.appName }}</span>
+      @if (navFrameConfig.appVersion) {
+        <span class="app-version">{{ navFrameConfig.appVersion }}</span>
+      }
+    }
   </div>
 </div>
 
