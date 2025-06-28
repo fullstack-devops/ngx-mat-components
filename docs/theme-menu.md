@@ -10,6 +10,7 @@ The `FsThemeMenu` component provides a user-friendly theme switcher for Angular 
 - **Material 3 theming** support
 - **Accessible menu** with clear icons and labels
 - **Easy integration** into toolbars or navigation frames
+- **Persistent theme selection** using `localStorage` (see `localStorageKey` input)
 
 ---
 
@@ -30,7 +31,7 @@ import { FsThemeMenu } from '@fullstack-devops/ngx-mat-components';
 ## Usage Example
 
 ```html
-<fs-theme-menu>
+<fs-theme-menu [localStorageKey]="'my-theme-key'">
   <i-lucide [img]="PaintBucketIcon"></i-lucide>
 </fs-theme-menu>
 ```
@@ -43,6 +44,9 @@ You can place `<fs-theme-menu>` inside your toolbar or anywhere in your layout. 
 
 - `@Input() theme: FsThemeColorSchemes`  
   Set the current theme (`'auto'`, `'light-mode'`, `'dark-mode'`).
+
+- `@Input() localStorageKey: string`  
+  (Optional) The key used for storing the selected theme in `localStorage`. Defaults to `'fs-selected-theme'`. Use this if you want to scope the theme preference to a specific part of your app or avoid conflicts with other components.
 
 - `@Output() themeChange: EventEmitter<FsThemeColorSchemes>`  
   Emits when the user selects a new theme.
@@ -69,6 +73,8 @@ export enum FsThemeColorSchemes {
 - When `'auto'` is selected, the theme follows the user's system preference.
 - The menu uses Material Design and includes icons for each theme option.
 - Works only with Angular Material 3.
+- The selected theme is persisted in `localStorage` under the key specified by `localStorageKey` (default: `'fs-selected-theme'`). Only explicit selections of `'light-mode'` or `'dark-mode'` are stored; selecting `'auto'` removes the key and follows the system preference.
+- On initialization, the component reads the value from `localStorage` (if present) and applies it.
 - Prepare the `style.scss` file in your project to include the theme styles.
 
 ```scss
@@ -92,6 +98,7 @@ body.dark-mode {
 body.light-mode {
   color-scheme: light;
 }
+```
 
 ---
 
@@ -116,7 +123,9 @@ body.light-mode {
 
 ## Example Screenshot
 
-![Theme Menu Example](../projects/lib-workspace/src/assets/theme-menu-shot.png)
+> **Note:** The colors shown in the theme icon reflect your currently selected theme, providing a visual preview that matches your actual color scheme.
+
+![Theme Menu Example](./assets/theme-menu-shot.png)
 
 ---
 

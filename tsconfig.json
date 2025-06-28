@@ -11,8 +11,10 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
     "paths": {
+      "packageJson": ["./package.json"],
       "ngx-mat-components": ["dist/ngx-mat-components"]
     },
     "declaration": false,

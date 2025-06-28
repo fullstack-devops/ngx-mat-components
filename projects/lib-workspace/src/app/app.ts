@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { version } from 'packageJson';
+import { Component, HostBinding } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -63,9 +64,11 @@ export class App {
   readonly CogIcon = CogIcon;
   readonly PaintBucketIcon = PaintBucketIcon;
 
+  @HostBinding('attr.app-version') appVersion = version;
+
   navFrameConfig: NavFrameConfig = {
     appName: 'Demo App',
-    appVersion: '0.0.0',
+    appVersion: version,
     // logoSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1024px-Angular_full_color_logo.svg.png',
   };
   sizing: NavFrameSizing = {
