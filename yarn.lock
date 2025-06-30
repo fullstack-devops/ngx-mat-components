@@ -10,13 +10,21 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
-"@angular-devkit/architect@0.1902.15", "@angular-devkit/architect@>= 0.1900.0 < 0.2000.0":
+"@angular-devkit/architect@0.1902.15":
   version "0.1902.15"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1902.15.tgz#c9154e520dd287972cb7d5942513b2ac6a8597e0"
   integrity sha512-RbqhStc6ZoRv57ZqLB36VOkBkAdU3nNezCvIs0AJV5V4+vLPMrb0hpIB0sF+9yMlMjWsolnRsj0/Fil+zQG3bw==
   dependencies:
     "@angular-devkit/core" "19.2.15"
     rxjs "7.8.1"
+
+"@angular-devkit/architect@>= 0.2000.0 < 0.2100.0":
+  version "0.2000.4"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.2000.4.tgz#ac21b6278daa4f101339c2921418c7677ae46998"
+  integrity sha512-pg+EPv/j17ybCoYiKjeRCebkE5CeD009xC6XJfugBmui6CcCQ5UAN82ibBhL869PXR7xCboylcRxlFfcBmvCpA==
+  dependencies:
+    "@angular-devkit/core" "20.0.4"
+    rxjs "7.8.2"
 
 "@angular-devkit/build-angular@^19.2.15":
   version "19.2.15"
@@ -101,6 +109,18 @@
     rxjs "7.8.1"
     source-map "0.7.4"
 
+"@angular-devkit/core@20.0.4", "@angular-devkit/core@>= 20.0.0 < 21.0.0":
+  version "20.0.4"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-20.0.4.tgz#7f81183b2ce6654f600f8a8417a7f76fe27cc7ed"
+  integrity sha512-GmHBOEhdZn0Xh8JAdmnbSXtEMoAEqakEFy1JZmwuUo5e6uuuEp5xQY4O3MO0UQBVjYT+Wz8KNfonTvY91t/lNQ==
+  dependencies:
+    ajv "8.17.1"
+    ajv-formats "3.0.1"
+    jsonc-parser "3.3.1"
+    picomatch "4.0.2"
+    rxjs "7.8.2"
+    source-map "0.7.4"
+
 "@angular-devkit/schematics@19.2.15", "@angular-devkit/schematics@>= 19.0.0 < 20.0.0":
   version "19.2.15"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-19.2.15.tgz#d20ceba32f97b5f0e07e25268d9b8fea7ee142dd"
@@ -112,13 +132,13 @@
     ora "5.4.1"
     rxjs "7.8.1"
 
-"@angular-eslint/builder@^19.8.1":
-  version "19.8.1"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/builder/-/builder-19.8.1.tgz#95b9cda1badf5d8ea968f5477f65303baf23f101"
-  integrity sha512-NOMkw0xgDoDVCLkL5nkkvdd3ouDYkOGqtEmabTR7N4/kQnk1R4coOTWGCqAgMXCFdxlyjuxquDwuJ+yni81pRg==
+"@angular-eslint/builder@^20.1.1":
+  version "20.1.1"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/builder/-/builder-20.1.1.tgz#2f0fcf193012dc339d8b1fbb91adabdfda8751d7"
+  integrity sha512-pfCYfocX79CZ5nokZF4gVScUGyLWRKQHZsUkQ5V/1hsaGsahvzDRjxsYz0J9rO0ligSa2pwgUCXEwSY8hhHQBw==
   dependencies:
-    "@angular-devkit/architect" ">= 0.1900.0 < 0.2000.0"
-    "@angular-devkit/core" ">= 19.0.0 < 20.0.0"
+    "@angular-devkit/architect" ">= 0.2000.0 < 0.2100.0"
+    "@angular-devkit/core" ">= 20.0.0 < 21.0.0"
 
 "@angular-eslint/bundled-angular-compiler@19.8.1":
   version "19.8.1"
@@ -7048,7 +7068,7 @@ rxjs@7.8.1:
   dependencies:
     tslib "^2.1.0"
 
-rxjs@^7.8.1, rxjs@^7.8.2:
+rxjs@7.8.2, rxjs@^7.8.1, rxjs@^7.8.2:
   version "7.8.2"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.8.2.tgz#955bc473ed8af11a002a2be52071bf475638607b"
   integrity sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA==
