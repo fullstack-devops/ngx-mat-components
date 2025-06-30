@@ -5738,10 +5738,10 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-lucide-angular@^0.523.0:
-  version "0.523.0"
-  resolved "https://registry.yarnpkg.com/lucide-angular/-/lucide-angular-0.523.0.tgz#d9d93424ec9f98bbd289395362dc8e1b2efe9a2b"
-  integrity sha512-SxYLCsSTzi1Eg6PeFLE5r/bs5n9uFLMgh/IdYa1DtPbx5CfwqU+dtDGslUbVUzEXeByBGjjO9pqY3OB1aDQ8aw==
+lucide-angular@^0.525.0:
+  version "0.525.0"
+  resolved "https://registry.yarnpkg.com/lucide-angular/-/lucide-angular-0.525.0.tgz#10185bd3a8fc9fcb77fcc1f6f6f7541643f74316"
+  integrity sha512-Db6a3e6Z45Qlslh2I5YvmaIPZ3kSJojDos0lO3KzRW18YNguU28w3OZSPPglRRhBiS+HKuhQZjaJyqB/bqxfZg==
   dependencies:
     tslib "^2.3.0"
 
