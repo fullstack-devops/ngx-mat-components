@@ -36,8 +36,8 @@
 
   <fs-nav-user-profile>
     <!--  profilePicture="https://material.angular.io/assets/img/examples/shiba1.jpg" -->
-    <fs-nav-user-profile-name>Some User</fs-nav-user-profile-name>
-    <fs-nav-user-profile-subname>Enginer</fs-nav-user-profile-subname>
+    <fs-nav-user-profile-name *ngIf="userProfile() as user">{{ user.name }}</fs-nav-user-profile-name>
+    <fs-nav-user-profile-subname *ngIf="userProfile() as user">{{ user.subname }}</fs-nav-user-profile-subname>
 
     <fs-nav-user-profile-actions>
       <button mat-icon-button>

@@ -1,10 +1,10 @@
 @mixin fs-calendar-theme() {
   .fs-calendar-helper .fs-calendar-month {
-    background-color: var(--mdc-outlined-card-container-color, var(--mat-sys-surface));
-    border-radius: var(--mdc-outlined-card-container-shape, var(--mat-sys-corner-medium));
-    border-width: var(--mdc-outlined-card-outline-width, 1px);
-    border-color: var(--mdc-outlined-card-outline-color, var(--mat-sys-outline-variant));
-    box-shadow: var(--mdc-outlined-card-container-elevation, var(--mat-sys-level0));
+    background-color: var(--mat-card-outlined-container-color, var(--mat-sys-surface));
+    border-radius: var(--mat-card-outlined-container-shape, var(--mat-sys-corner-medium));
+    border-width: var(--mat-card-outlined-outline-width, 1px);
+    border-color: var(--mat-card-outlined-outline-color, var(--mat-sys-outline-variant));
+    box-shadow: var(--mat-card-outlined-container-elevation, var(--mat-sys-level0));
     border-style: solid;
   }
 
