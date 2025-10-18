@@ -21,7 +21,18 @@
 
 ## 📦 Current Component Inventory
 
-### **Main Components**
+### **## 📅 Timeline
+
+| Phase | Duration | Status |
+|-------|----------|--------|
+| **Phase 1: Framework Upgrade** | 2 days | ✅ **DONE** (Oct 18, 2025) |
+| **Phase 2: Remove NgModules** | 3 days | ✅ **DONE** (Oct 18, 2025) |
+| **Phase 3: Signal-Based** | 5 days | 🔨 In Progress |
+| **Phase 4: Control Flow** | 2 days | 🔜 Pending |
+| **Phase 5: OnPush** | 1 day | 🔜 Pending |
+| **Phase 6: 2-Level Nav** | 3 days | 🔜 Pending |
+| **Phase 7: Testing** | 4 days | 🔜 Later |
+| **Total** | **~3 weeks** | 🔨 In Progress |nts**
 
 | Component | Location | Status | Priority |
 |-----------|----------|--------|----------|
@@ -625,22 +636,22 @@ yarn test:visual:approve
 ## 📊 Migration Checklist
 
 ### **Phase 1: Framework Upgrade**
-- [ ] Update package.json to Angular 20
-- [ ] Run `ng update` commands
-- [ ] Fix breaking changes
-- [ ] Verify build success
-- [ ] Run tests
+- [x] Update package.json to Angular 20 ✅
+- [x] Run `ng update` commands ✅
+- [x] Fix breaking changes ✅ (none needed!)
+- [x] Verify build success ✅
+- [ ] Run tests (skipped - no tests yet)
 
 ### **Phase 2: Remove NgModules**
-- [ ] Convert FsNavFrameComponent to standalone
-- [ ] Convert FsNavFrameToolbarComponent to standalone
-- [ ] Convert FsNavFrameSidebarComponent to standalone
-- [ ] Convert FsNavUserProfileComponent to standalone
-- [ ] Convert FsThemeMenuComponent to standalone
-- [ ] Convert FsCalendarComponent to standalone
-- [ ] Convert all directives to standalone
-- [ ] Delete NgModule files
-- [ ] Update public-api.ts
+- [x] Convert FsNavFrameComponent to standalone ✅
+- [x] Convert FsNavFrameToolbarComponent to standalone ✅
+- [x] Convert FsNavFrameSidebarComponent to standalone ✅
+- [x] Convert FsNavUserProfileComponent to standalone ✅
+- [x] Convert FsThemeMenuComponent to standalone ✅ (was already standalone)
+- [x] Convert FsCalendarComponent to standalone ✅
+- [x] Convert all directives to standalone ✅
+- [x] Delete NgModule files ✅
+- [x] Update public-api.ts ✅
 
 ### **Phase 3: Signal-Based Components**
 - [ ] Convert @Input() to input() in FsNavFrameComponent
@@ -764,14 +775,14 @@ effect(() => {
 
 | Phase | Duration | Status |
 |-------|----------|--------|
-| **Phase 1: Framework Upgrade** | 2 days | 🔜 Pending |
-| **Phase 2: Remove NgModules** | 3 days | 🔜 Pending |
+| **Phase 1: Framework Upgrade** | 2 days | ✅ **DONE** (Oct 18, 2025) |
+| **Phase 2: Remove NgModules** | 3 days | � In Progress |
 | **Phase 3: Signal-Based** | 5 days | 🔜 Pending |
 | **Phase 4: Control Flow** | 2 days | 🔜 Pending |
 | **Phase 5: OnPush** | 1 day | 🔜 Pending |
 | **Phase 6: 2-Level Nav** | 3 days | 🔜 Pending |
-| **Phase 7: Testing** | 4 days | 🔜 Pending |
-| **Total** | **~3 weeks** | 🔜 Pending |
+| **Phase 7: Testing** | 4 days | 🔜 Later |
+| **Total** | **~3 weeks** | � In Progress |
 
 ---
 

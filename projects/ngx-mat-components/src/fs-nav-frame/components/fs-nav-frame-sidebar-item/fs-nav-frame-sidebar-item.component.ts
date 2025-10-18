@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FsNavFrameService, MenuState } from '../../services/fs-nav-frame.service';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -6,13 +7,13 @@ import { Subject, takeUntil } from 'rxjs';
   selector: 'fs-nav-frame-sidebar-item',
   templateUrl: './fs-nav-frame-sidebar-item.component.html',
   styleUrls: ['./fs-nav-frame-sidebar-item.component.scss'],
+  imports: [RouterLink, RouterLinkActive],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'fs-nav-frame-sidebar-item',
     'data-component-id': 'fs-nav-frame-sidebar-item-unique',
   },
-  standalone: false,
 })
 export class FsNavFrameSidebarItemComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();

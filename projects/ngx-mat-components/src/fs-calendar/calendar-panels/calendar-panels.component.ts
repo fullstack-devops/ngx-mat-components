@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import * as dateFns from 'date-fns';
 import { CalendarEvent, CalendarExtendedDay, CalendarPanels, CalendarPanelSum } from '../calendar.models';
 import { FsCalendarService } from '../services/fs-calendar.service';
@@ -7,11 +8,11 @@ import { FsCalendarService } from '../services/fs-calendar.service';
   selector: 'fs-calendar-panels',
   templateUrl: './calendar-panels.component.html',
   styleUrls: ['./calendar-panels.component.scss'],
+  imports: [CommonModule],
   host: {
     class: 'fs-calendar-panels',
     'data-component-id': 'fs-calendar-panels-unique',
   },
-  standalone: false,
 })
 export class FsCalendarPanelsComponent implements OnInit {
   private _dataSource: CalendarPanels<any> = {

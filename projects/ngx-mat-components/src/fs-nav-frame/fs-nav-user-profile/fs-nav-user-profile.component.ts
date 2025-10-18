@@ -11,7 +11,6 @@ import { FsNavFrameService } from '../services/fs-nav-frame.service';
     class: 'fs-nav-user-profile',
     'data-component-id': 'fs-nav-user-profile-unique',
   },
-  standalone: false,
 })
 export class FsNavUserProfileComponent implements OnInit {
   @Output() onClickProfile = new EventEmitter<any>();

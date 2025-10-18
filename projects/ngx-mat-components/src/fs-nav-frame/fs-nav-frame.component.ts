@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef, HostBinding, Input, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, ElementRef, Input, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavFrameConfig, NavFrameSizing } from './fs-nav-frame.modules';
 import { FsNavFrameService, MenuState } from './services/fs-nav-frame.service';
@@ -12,7 +12,7 @@ import { Subject, takeUntil } from 'rxjs';
     class: 'fs-nav-frame',
     'data-component-id': 'fs-nav-frame-unique',
   },
-  standalone: false,
+  // standalone: true is default in Angular 20+
 })
 export class FsNavFrameComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();

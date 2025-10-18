@@ -12,7 +12,6 @@ import { Subject, takeUntil } from 'rxjs';
     class: 'fs-nav-frame-toolbar',
     'data-component-id': 'fs-nav-frame-toolbar-unique',
   },
-  standalone: false,
 })
 export class FsNavFrameToolbarComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
