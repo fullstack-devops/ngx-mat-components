@@ -1,12 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'fs-check-svg',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'fs-check-svg',
   },
   template: `
-    @if (active) {
+    @if (active()) {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -37,5 +38,5 @@ import { Component, Input } from '@angular/core';
   `,
 })
 export class FsCheckSvg {
-  @Input() active: boolean = false;
+  active = input<boolean>(false);
 }

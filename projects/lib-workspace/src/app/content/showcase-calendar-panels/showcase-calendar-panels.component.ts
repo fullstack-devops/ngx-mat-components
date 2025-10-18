@@ -1,10 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { CalendarEvent, CalendarExtendedDay, CalendarPanels, CalendarPanelsConfig, FsCalendarModule } from 'projects/ngx-mat-components/src/public-api';
+import {
+  CalendarEvent,
+  CalendarExtendedDay,
+  CalendarPanels,
+  CalendarPanelsConfig,
+  FsCalendarPanelsComponent,
+} from 'projects/ngx-mat-components/src/public-api';
 
 interface CustomTestObj {
   id: number;
@@ -13,9 +19,10 @@ interface CustomTestObj {
 
 @Component({
   selector: 'app-showcase-calendar-panels',
-  imports: [CommonModule, FormsModule, FsCalendarModule, MatSlideToggleModule, MatFormFieldModule, MatSelectModule],
+  imports: [CommonModule, FormsModule, FsCalendarPanelsComponent, MatSlideToggleModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './showcase-calendar-panels.component.html',
   styleUrls: ['./showcase-calendar-panels.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowcaseCalendarPanelsComponent implements OnInit {
   range: any;

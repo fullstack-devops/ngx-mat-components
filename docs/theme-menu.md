@@ -1,136 +1,402 @@
 # FsThemeMenu Documentation
 
-The `FsThemeMenu` component provides a user-friendly theme switcher for Angular Material applications, allowing users to toggle between light, dark, and system (auto) color schemes.
+The `FsThemeMenu` provides a user-friendly theme switcher for Angular Material applications, allowing users to toggle between light and dark themes.
+
+> **Angular 20+**: This component uses standalone architecture, signals-based reactivity, and OnPush change detection for optimal performance.
 
 ---
 
 ## Features
 
-- **Switch between Light, Dark, and System themes**
-- **Material 3 theming** support
-- **Accessible menu** with clear icons and labels
-- **Easy integration** into toolbars or navigation frames
-- **Persistent theme selection** using `localStorage` (see `localStorageKey` input)
+- **Light/Dark theme toggle** with smooth transitions
+- **Persistent theme storage** using localStorage
+- **System preference detection** - Auto-detects user's OS theme preference
+- **Signal-based state** for efficient reactivity
+- **Accessibility** - Full ARIA support with keyboard navigation
+- **Material 3 theming** - Seamless integration with Angular Material
+- **Custom icons** - Lucide icons for modern look
 
 ---
 
-## Module Import
+## Installation
 
-```ts
-import { FsThemeMenu } from '@fullstack-devops/ngx-mat-components';
+### Standalone Component (Angular 20+)
+
+Import the component directly:
+
+```typescript
+import { FsThemeMenuComponent } from '@fullstack-devops/ngx-mat-components';
+
+@Component({
+  selector: 'app-root',
+  imports: [FsThemeMenuComponent]
+})
+export class AppComponent {}
 ```
 
 ---
 
-## Main Component
+## Component
 
-- [`FsThemeMenu`](../projects/ngx-mat-components/src/fs-theme-menu/fs-theme-menu.ts)
+- [`FsThemeMenuComponent`](../projects/ngx-mat-components/src/fs-theme-menu/fs-theme-menu.component.ts) - Theme switcher menu
 
 ---
 
-## Usage Example
+## Basic Usage
 
-```html
-<fs-theme-menu [localStorageKey]="'my-theme-key'">
-  <i-lucide [img]="PaintBucketIcon"></i-lucide>
-</fs-theme-menu>
+```typescript
+import { Component } from '@angular/core';
+import { FsThemeMenuComponent } from '@fullstack-devops/ngx-mat-components';
+
+@Component({
+  selector: 'app-root',
+  imports: [FsThemeMenuComponent],
+  template: `
+    <div class="toolbar">
+      <h1>My Application</h1>
+      <fs-theme-menu />
+    </div>
+  `
+})
+export class AppComponent {}
 ```
 
-You can place `<fs-theme-menu>` inside your toolbar or anywhere in your layout. The component will display a button that opens a menu for selecting the color scheme.
-
 ---
 
-## Inputs & Outputs
+## Usage in Navigation Frame
 
-- `@Input() theme: FsThemeColorSchemes`  
-  Set the current theme (`'auto'`, `'light-mode'`, `'dark-mode'`).
+```typescript
+import { Component } from '@angular/core';
+import {
+  FsNavFrameComponent,
+  FsNavFrameToolbarComponent,
+  FsNavFrameToolbarStartDirective,
+  FsNavFrameToolbarEndDirective,
+  FsThemeMenuComponent
+} from '@fullstack-devops/ngx-mat-components';
 
-- `@Input() localStorageKey: string`  
-  (Optional) The key used for storing the selected theme in `localStorage`. Defaults to `'fs-selected-theme'`. Use this if you want to scope the theme preference to a specific part of your app or avoid conflicts with other components.
-
-- `@Output() themeChange: EventEmitter<FsThemeColorSchemes>`  
-  Emits when the user selects a new theme.
-
----
-
-## Theme Enum
-
-[`FsThemeColorSchemes`](../projects/ngx-mat-components/src/fs-theme-menu/fs-theme-menu.ts):
-
-```ts
-export enum FsThemeColorSchemes {
-  Auto = 'auto',
-  Light = 'light-mode',
-  Dark = 'dark-mode',
-}
+@Component({
+  selector: 'app-root',
+  imports: [
+    FsNavFrameComponent,
+    FsNavFrameToolbarComponent,
+    FsNavFrameToolbarStartDirective,
+    FsNavFrameToolbarEndDirective,
+    FsThemeMenuComponent,
+  ],
+  template: `
+    <fs-nav-frame>
+      <fs-nav-frame-toolbar>
+        <fs-nav-frame-toolbar-start>
+          My App
+        </fs-nav-frame-toolbar-start>
+        
+        <fs-nav-frame-toolbar-end>
+          <fs-theme-menu />
+          <!-- Other toolbar actions -->
+        </fs-nav-frame-toolbar-end>
+      </fs-nav-frame-toolbar>
+      
+      <!-- Rest of nav frame -->
+    </fs-nav-frame>
+  `
+})
+export class AppComponent {}
 ```
 
 ---
 
 ## How It Works
 
-- The selected theme is applied as a class (`light-mode`, `dark-mode`) to the `<body>`.
-- When `'auto'` is selected, the theme follows the user's system preference.
-- The menu uses Material Design and includes icons for each theme option.
-- Works only with Angular Material 3.
-- The selected theme is persisted in `localStorage` under the key specified by `localStorageKey` (default: `'fs-selected-theme'`). Only explicit selections of `'light-mode'` or `'dark-mode'` are stored; selecting `'auto'` removes the key and follows the system preference.
-- On initialization, the component reads the value from `localStorage` (if present) and applies it.
-- Prepare the `style.scss` file in your project to include the theme styles.
+### Theme Detection Priority
 
-```scss
-@use '@angular/material' as mat;
-@use '@fullstack-devops/ngx-mat-components' as fsc;
-@include fsc.core();
+1. **User preference** (from localStorage) - If user has previously selected a theme
+2. **System preference** (from `prefers-color-scheme`) - If no user preference exists
+3. **Default theme** - Falls back to light theme
 
-html {
-  color-scheme: light dark; // for system preference
-  @include mat.theme(
-    (
-      color: mat.$green-palette,
-      typography: Roboto-local,
-      density: 0,
-    )
-  );
+### Theme Persistence
+
+The component automatically:
+- Saves theme preference to `localStorage` with key `'theme'`
+- Restores theme on app reload
+- Applies theme changes to `document.documentElement.classList`
+
+### Theme Classes
+
+The component toggles these CSS classes on the `<html>` element:
+- `'light-theme'` - Light theme active
+- `'dark-theme'` - Dark theme active
+
+---
+
+## Advanced Usage
+
+### Listening to Theme Changes
+
+```typescript
+import { Component, effect } from '@angular/core';
+import { FsThemeMenuComponent } from '@fullstack-devops/ngx-mat-components';
+import { ThemeService } from './services/theme.service';
+
+@Component({
+  selector: 'app-root',
+  imports: [FsThemeMenuComponent],
+  template: `
+    <fs-theme-menu />
+  `
+})
+export class AppComponent {
+  private themeService = inject(ThemeService);
+  
+  constructor() {
+    // React to theme changes
+    effect(() => {
+      const theme = this.getCurrentTheme();
+      this.themeService.updateChartColors(theme);
+      this.updateFavicon(theme);
+    });
+  }
+  
+  private getCurrentTheme(): 'light' | 'dark' {
+    return document.documentElement.classList.contains('dark-theme') 
+      ? 'dark' 
+      : 'light';
+  }
+  
+  private updateFavicon(theme: 'light' | 'dark') {
+    const link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+    if (link) {
+      link.href = `/favicon-${theme}.ico`;
+    }
+  }
 }
-body.dark-mode {
-  color-scheme: dark;
+```
+
+### Custom Theme Service Integration
+
+```typescript
+import { Injectable, signal, effect } from '@angular/core';
+
+export type Theme = 'light' | 'dark';
+
+@Injectable({ providedIn: 'root' })
+export class ThemeService {
+  // Centralized theme state
+  private _theme = signal<Theme>('light');
+  theme = this._theme.asReadonly();
+  
+  constructor() {
+    // Initialize from localStorage
+    const stored = localStorage.getItem('theme') as Theme | null;
+    if (stored) {
+      this._theme.set(stored);
+    } else {
+      // Detect system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this._theme.set(prefersDark ? 'dark' : 'light');
+    }
+    
+    // Apply theme changes
+    effect(() => {
+      const theme = this._theme();
+      document.documentElement.classList.remove('light-theme', 'dark-theme');
+      document.documentElement.classList.add(`${theme}-theme`);
+      localStorage.setItem('theme', theme);
+    });
+  }
+  
+  toggleTheme() {
+    this._theme.update(current => current === 'light' ? 'dark' : 'light');
+  }
+  
+  setTheme(theme: Theme) {
+    this._theme.set(theme);
+  }
 }
-body.light-mode {
-  color-scheme: light;
+
+// Usage in component
+@Component({
+  selector: 'app-root',
+  imports: [FsThemeMenuComponent],
+  template: `
+    <div>
+      <h1>Current Theme: {{ themeService.theme() }}</h1>
+      <fs-theme-menu />
+      
+      <!-- Custom theme display -->
+      @if (themeService.theme() === 'dark') {
+        <p>🌙 Dark mode active</p>
+      } @else {
+        <p>☀️ Light mode active</p>
+      }
+    </div>
+  `
+})
+export class AppComponent {
+  themeService = inject(ThemeService);
 }
+```
+
+### Programmatic Theme Control
+
+```typescript
+import { Component, ViewChild } from '@angular/core';
+import { FsThemeMenuComponent } from '@fullstack-devops/ngx-mat-components';
+
+@Component({
+  selector: 'app-settings',
+  imports: [FsThemeMenuComponent],
+  template: `
+    <div class="settings">
+      <h2>Settings</h2>
+      
+      <div class="theme-section">
+        <h3>Theme</h3>
+        <fs-theme-menu />
+        
+        <button (click)="resetToSystemPreference()">
+          Reset to System Preference
+        </button>
+      </div>
+    </div>
+  `
+})
+export class SettingsComponent {
+  resetToSystemPreference() {
+    localStorage.removeItem('theme');
+    
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = prefersDark ? 'dark' : 'light';
+    
+    document.documentElement.classList.remove('light-theme', 'dark-theme');
+    document.documentElement.classList.add(`${theme}-theme`);
+  }
+}
+```
+
+---
+
+## Accessibility
+
+The theme menu includes:
+
+- **ARIA label** - "Theme selection" for screen readers
+- **Radio group semantics** - Proper `role="menuitemradio"` for theme options
+- **Checked states** - `aria-checked` reflects current selection
+- **Keyboard navigation** - Tab to focus, Enter/Space to toggle, Arrow keys to navigate options
+- **Focus indicators** - Clear visual focus states
+
+Example with custom ARIA label:
+
+```html
+<fs-theme-menu aria-label="Choose color theme" />
 ```
 
 ---
 
 ## Theming & Styling
 
-- The component supports Material 3 theming.
-- SCSS: [`fs-theme-menu.scss`](../projects/ngx-mat-components/src/fs-theme-menu/fs-theme-menu.scss)
-- To use the theme in your styles:
-  ```scss
-  @use '@fullstack-devops/ngx-mat-components' as fsc;
+### Material 3 Theme Integration
+
+The component works seamlessly with Angular Material themes:
+
+```scss
+@use '@angular/material' as mat;
+@use '@fullstack-devops/ngx-mat-components' as fsc;
+
+// Define your light and dark themes
+$light-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+  ),
+));
+
+$dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$azure-palette,
+  ),
+));
+
+// Apply themes based on CSS class
+:root {
+  @include mat.all-component-themes($light-theme);
   @include fsc.core();
-  ```
+}
+
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+}
+```
+
+### Custom Theme Styles
+
+```scss
+// Example: Custom styles per theme
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --card-background: #f5f5f5;
+}
+
+.dark-theme {
+  --background-color: #121212;
+  --text-color: #ffffff;
+  --card-background: #1e1e1e;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.card {
+  background-color: var(--card-background);
+}
+```
+
+---
+
+## Icons
+
+The component uses [Lucide Angular](https://lucide.dev/) icons:
+- **Sun icon** (☀️) - Light theme
+- **Moon icon** (🌙) - Dark theme
+
+The icons automatically change based on the current theme.
 
 ---
 
 ## API Reference
 
-- [`FsThemeMenu`](../projects/ngx-mat-components/src/fs-theme-menu/fs-theme-menu.ts)
-- [`FsThemeColorSchemes`](../projects/ngx-mat-components/src/fs-theme-menu/fs-theme-menu.ts)
+### Component
+- [`FsThemeMenuComponent`](../projects/ngx-mat-components/src/fs-theme-menu/fs-theme-menu.component.ts)
+
+### Public API
+
+```typescript
+// No inputs or outputs - fully self-contained
+
+// Theme is stored in localStorage with key 'theme'
+localStorage.getItem('theme') // 'light' | 'dark'
+
+// Theme class is applied to document root
+document.documentElement.classList // 'light-theme' | 'dark-theme'
+```
 
 ---
 
-## Example Screenshot
+## Browser Support
 
-> **Note:** The colors shown in the theme icon reflect your currently selected theme, providing a visual preview that matches your actual color scheme.
-
-![Theme Menu Example](./assets/theme-menu-shot.png)
+- **localStorage** - Required for theme persistence
+- **prefers-color-scheme** - Used for system theme detection (gracefully degrades)
+- Works in all modern browsers (Chrome, Firefox, Safari, Edge)
 
 ---
 
 ## See Also
 
 - [Live Demo](https://fullstack-devops.github.io/ngx-mat-components)
-- Workspace Example:
-  - [app.html](https://github.com/fullstack-devops/ngx-mat-components/blob/main/projects/lib-workspace/src/app/app.html)
+- [Material 3 Theming Guide](https://material.angular.io/guide/theming)
+- [CHANGELOG.md](../CHANGELOG.md) - Migration guide from NgModules

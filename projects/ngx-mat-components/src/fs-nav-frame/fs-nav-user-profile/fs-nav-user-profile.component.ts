@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, ViewEncapsulation } from '@angular/core';
 import { FsNavFrameService } from '../services/fs-nav-frame.service';
 
 @Component({
@@ -11,19 +11,18 @@ import { FsNavFrameService } from '../services/fs-nav-frame.service';
     class: 'fs-nav-user-profile',
     'data-component-id': 'fs-nav-user-profile-unique',
   },
-  standalone: false,
 })
-export class FsNavUserProfileComponent implements OnInit {
-  @Output() onClickProfile = new EventEmitter<any>();
+export class FsNavUserProfileComponent {
+  // Output signal
+  readonly onClickProfile = output<any>();
 
-  @Input() profilePicture: string = '';
-  @Input() opened: boolean = false;
+  // Input signals
+  readonly profilePicture = input<string>('');
+  readonly opened = input<boolean>(false);
 
   constructor(private frameService: FsNavFrameService) {}
 
-  ngOnInit(): void {}
-
-  toggleSidemenu() {
+  toggleSidemenu(): void {
     this.frameService.switchMenuState();
   }
 }

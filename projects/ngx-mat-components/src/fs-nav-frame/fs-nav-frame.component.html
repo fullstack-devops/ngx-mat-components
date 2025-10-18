@@ -1,36 +1,32 @@
-<div class="fs-nav-frame-logo" [class.opened]="!isClosed">
+<div class="fs-nav-frame-logo" [class.opened]="!isClosed()">
   <div class="logo-wrapper">
-    <button mat-icon-button (click)="toggleSidemenu()">
-      <div
-        class="logo-picture"
-        *ngIf="navFrameConfig.logoSrc !== '' && navFrameConfig.logoSrc !== undefined"
-        style="background-image: url('{{ navFrameConfig.logoSrc }}');"></div>
-      <!-- <svg *ngIf="navFrameConfig.logoSrc === '' || navFrameConfig.logoSrc === undefined" height="48px" viewBox="0 0 24 24" width="48px">
-        <path d="M0 0h24v24H0V0z" fill="none" />
-        <path d="M3 18h13v-2H3v2zm0-5h10v-2H3v2zm0-7v2h13V6H3zm18 9.59L17.42 12 21 8.41 19.59 7l-5 5 5 5L21 15.59z" />
-      </svg> -->
-      <svg
-        *ngIf="navFrameConfig.logoSrc === '' || navFrameConfig.logoSrc === undefined"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round">
-        <path d="M4 12h16" />
-        <path d="M4 18h16" />
-        <path d="M4 6h16" />
-      </svg>
+    <button mat-icon-button (click)="toggleSidemenu()" aria-label="Toggle navigation menu" title="Toggle menu">
+      @if (navFrameConfig().logoSrc !== '' && navFrameConfig().logoSrc !== undefined) {
+        <div class="logo-picture" [style.background-image]="'url(' + navFrameConfig().logoSrc + ')'"></div>
+      }
+      @if (navFrameConfig().logoSrc === '' || navFrameConfig().logoSrc === undefined) {
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M4 12h16" />
+          <path d="M4 18h16" />
+          <path d="M4 6h16" />
+        </svg>
+      }
     </button>
   </div>
-  <div class="app-info-wrapper" [class.opened]="!isClosed">
-    @if (!isClosed) {
-      <span class="app-name">{{ navFrameConfig.appName }}</span>
-      @if (navFrameConfig.appVersion) {
-        <span class="app-version">{{ navFrameConfig.appVersion }}</span>
+  <div class="app-info-wrapper" [class.opened]="!isClosed()">
+    @if (!isClosed()) {
+      <span class="app-name">{{ navFrameConfig().appName }}</span>
+      @if (navFrameConfig().appVersion) {
+        <span class="app-version">{{ navFrameConfig().appVersion }}</span>
       }
     }
   </div>
@@ -38,13 +34,13 @@
 
 <ng-content select="fs-nav-frame-toolbar"></ng-content>
 
-<div class="sidebar" [class.opened]="!isClosed" (click)="closeSidebar()">
+<div class="sidebar" [class.opened]="!isClosed()" (click)="closeSidebar()">
   <!-- Navigation -->
-  <ng-content select="fs-nav-frame-sidebar" [class.opened]="!isClosed"></ng-content>
+  <ng-content select="fs-nav-frame-sidebar" [class.opened]="!isClosed()"></ng-content>
 
   <!-- User Profile -->
-  <ng-content select="fs-nav-user-profile" [class.opened]="!isClosed"></ng-content>
+  <ng-content select="fs-nav-user-profile" [class.opened]="!isClosed()"></ng-content>
 </div>
 
-<div class="glassplane" [class.opened]="!isClosed" (click)="closeSidebar()"></div>
-<ng-content select="fs-nav-frame-content" [class.opened]="!isClosed"></ng-content>
+<div class="glassplane" [class.opened]="!isClosed()" (click)="closeSidebar()"></div>
+<ng-content select="fs-nav-frame-content" [class.opened]="!isClosed()"></ng-content>

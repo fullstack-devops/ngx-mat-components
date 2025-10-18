@@ -1,12 +1,13 @@
-<button mat-icon-button [matMenuTriggerFor]="colorSchemeMenu">
+<button mat-icon-button [matMenuTriggerFor]="colorSchemeMenu" aria-label="Theme selection" title="Change theme">
   <ng-content select=".icon, i-lucide"></ng-content>
 </button>
 
-<mat-menu #colorSchemeMenu="matMenu">
+<mat-menu #colorSchemeMenu="matMenu" aria-label="Theme options">
   <button
     mat-menu-item
     role="menuitemradio"
     class="theme-select-button"
+    aria-label="System theme preference"
     [attr.aria-checked]="isSelected(FsThemeColorSchemes.Auto)"
     (click)="onColorSchemeChange(FsThemeColorSchemes.Auto)">
     <fs-check-svg [active]="isSelected(FsThemeColorSchemes.Auto)"></fs-check-svg>
@@ -17,6 +18,7 @@
     mat-menu-item
     role="menuitemradio"
     class="theme-select-button"
+    aria-label="Light theme"
     [attr.aria-checked]="isSelected(FsThemeColorSchemes.Light)"
     (click)="onColorSchemeChange(FsThemeColorSchemes.Light)">
     <fs-check-svg [active]="isSelected(FsThemeColorSchemes.Light)"></fs-check-svg>
@@ -27,6 +29,7 @@
     mat-menu-item
     role="menuitemradio"
     class="theme-select-button"
+    aria-label="Dark theme"
     [attr.aria-checked]="isSelected(FsThemeColorSchemes.Dark)"
     (click)="onColorSchemeChange(FsThemeColorSchemes.Dark)">
     <fs-check-svg [active]="isSelected(FsThemeColorSchemes.Dark)"></fs-check-svg>

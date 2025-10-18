@@ -28,22 +28,25 @@
   </fs-nav-frame-toolbar>
 
   <fs-nav-frame-sidebar>
-    <fs-nav-frame-sidebar-item *ngFor="let route of navRoutes" routerLink="{{ route.path }}">
-      <span-lucide [img]="route.icon" class="my-icon"></span-lucide>
-      <span>{{ route.title }}</span>
-    </fs-nav-frame-sidebar-item>
+    @for (route of navRoutes; track route.title) {
+      <fs-nav-frame-sidebar-item [routerLink]="route.path" [label]="route.title">
+        <span-lucide [img]="route.icon" class="my-icon"></span-lucide>
+        <span>{{ route.title }}</span>
+      </fs-nav-frame-sidebar-item>
+    }
   </fs-nav-frame-sidebar>
 
   <fs-nav-user-profile>
-    <!--  profilePicture="https://material.angular.io/assets/img/examples/shiba1.jpg" -->
-    <fs-nav-user-profile-name>Some User</fs-nav-user-profile-name>
-    <fs-nav-user-profile-subname>Enginer</fs-nav-user-profile-subname>
+    @if (userProfile(); as user) {
+    <ng-container fs-nav-user-profile-name>{{ user.name }}</ng-container>
+    <ng-container fs-nav-user-profile-subname>{{ user.subname }}</ng-container>
+    }
 
     <fs-nav-user-profile-actions>
-      <button mat-icon-button>
+      <button mat-icon-button aria-label="Edit profile" title="Edit profile">
         <i-lucide [img]="UserPenIcon" class="my-icon"></i-lucide>
       </button>
-      <button mat-icon-button>
+      <button mat-icon-button aria-label="Logout" title="Logout">
         <i-lucide [img]="LogOutIcon" class="my-icon"></i-lucide>
       </button>
     </fs-nav-user-profile-actions>

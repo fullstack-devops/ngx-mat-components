@@ -1,97 +1,93 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, OnInit, output, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import * as dateFns from 'date-fns';
 import { CalendarMonth, CalendarTableEntry } from '../calendar.models';
 import { FsCalendarService } from '../services/fs-calendar.service';
 
 @Component({
   selector: 'fs-calendar-table',
+  imports: [MatButtonModule],
   templateUrl: './fs-calendar-table.component.html',
   styleUrls: ['./fs-calendar-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'fs-calendar-table mat-mdc-card mdc-card mat-mdc-card-outlined mdc-card--outlined',
     'data-component-id': 'fs-calendar-table-unique',
   },
-  standalone: false,
 })
 export class FsCalendarTableComponent implements OnInit {
-  isLoading: boolean = true;
+  private readonly calendarService = inject(FsCalendarService);
 
-  private _monthNumber: number = dateFns.getMonth(new Date());
-  private _yearNumber: number = dateFns.getYear(new Date());
-  private _dataSource: CalendarTableEntry[] = [];
+  dataSource = input<CalendarTableEntry[]>([]);
+  month = input<number>(dateFns.getMonth(new Date()));
+  year = input<number>(dateFns.getYear(new Date()));
 
-  currentMonth: CalendarMonth = this.calendarService.generateMonth(this._yearNumber, this._monthNumber, []);
-  tableData: CalendarTableEntry[] = [];
+  monthChange = output<number>();
+  yearChange = output<number>();
 
+  private readonly internalMonth = signal<number>(dateFns.getMonth(new Date()));
+  private readonly internalYear = signal<number>(dateFns.getYear(new Date()));
+
+  isLoading = signal<boolean>(true);
   markWeekend = true;
 
-  get dataSource(): CalendarTableEntry[] {
-    return this._dataSource;
-  }
-  get month(): number {
-    this.monthChange.emit(this._monthNumber);
-    return this._monthNumber;
-  }
-  get year(): number {
-    this.yearChange.emit(this._yearNumber);
-    return this._yearNumber;
-  }
+  protected readonly currentMonth = computed<CalendarMonth>(() => {
+    return this.calendarService.generateMonth(this.internalYear(), this.internalMonth(), []);
+  });
 
-  @Input()
-  set dataSource(data: CalendarTableEntry[]) {
-    this._dataSource = data;
-    this.genMonthData();
-  }
+  protected readonly tableData = computed<CalendarTableEntry[]>(() => {
+    const data = this.dataSource();
+    return data.map((item: CalendarTableEntry) => ({
+      name: item.name,
+      data: this.calendarService.generateMonth(this.internalYear(), this.internalMonth(), item.data).days,
+    }));
+  });
 
-  @Input()
-  set month(data: number) {
-    this._monthNumber = data;
-    this.genMonthData();
-  }
-  @Output() monthChange = new EventEmitter<number>();
+  constructor() {
+    // Sync input signals to internal signals
+    effect(() => {
+      this.internalMonth.set(this.month());
+      this.monthChange.emit(this.month());
+    });
 
-  @Input()
-  set year(data: number) {
-    this._yearNumber = data;
-    this.genMonthData();
-  }
-  @Output() yearChange = new EventEmitter<number>();
-
-  constructor(private calendarService: FsCalendarService) {}
-
-  ngOnInit() {
-    this.genMonthData();
-    this.isLoading = false;
-  }
-
-  genMonthData() {
-    this.currentMonth = this.calendarService.generateMonth(this._yearNumber, this._monthNumber, []);
-    this._dataSource.forEach((item: CalendarTableEntry, index: number) => {
-      this.tableData.splice(index, 1, {
-        name: item.name,
-        data: this.calendarService.generateMonth(this.year, this.month, item.data).days,
-      });
+    effect(() => {
+      this.internalYear.set(this.year());
+      this.yearChange.emit(this.year());
     });
   }
 
+  ngOnInit() {
+    this.isLoading.set(false);
+  }
+
   onMonthForward() {
-    if (this._monthNumber >= 11) {
-      this._yearNumber++;
-      this._monthNumber = 0;
+    const currentMonth = this.internalMonth();
+    const currentYear = this.internalYear();
+
+    if (currentMonth >= 11) {
+      this.internalYear.set(currentYear + 1);
+      this.internalMonth.set(0);
     } else {
-      this._monthNumber++;
+      this.internalMonth.set(currentMonth + 1);
     }
-    this.genMonthData();
+
+    this.monthChange.emit(this.internalMonth());
+    this.yearChange.emit(this.internalYear());
   }
 
   onMonthBackward() {
-    if (this._monthNumber <= 0) {
-      this._yearNumber--;
-      this._monthNumber = 11;
+    const currentMonth = this.internalMonth();
+    const currentYear = this.internalYear();
+
+    if (currentMonth <= 0) {
+      this.internalYear.set(currentYear - 1);
+      this.internalMonth.set(11);
     } else {
-      this._monthNumber--;
+      this.internalMonth.set(currentMonth - 1);
     }
-    this.genMonthData();
+
+    this.monthChange.emit(this.internalMonth());
+    this.yearChange.emit(this.internalYear());
   }
 
   isToday(date: Date): boolean {

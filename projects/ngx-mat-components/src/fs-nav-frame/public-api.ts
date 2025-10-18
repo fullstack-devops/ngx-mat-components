@@ -6,7 +6,7 @@ export { FsNavFrameContentDirective } from './directives/fs-nav-frame-content.di
 export { FsNavFrameSidebar } from './components/fs-nav-frame-sidebar';
 export { FsNavFrameSidebarItemComponent } from './components/fs-nav-frame-sidebar-item/fs-nav-frame-sidebar-item.component';
 export { FsNavFrameComponent } from './fs-nav-frame.component';
-export { FsNavFrameModule } from './fs-nav-frame.module';
+// Removed: export { FsNavFrameModule } - Using standalone components now
 export * from './fs-nav-frame.modules';
 export { FsNavUserProfileActionsDirective } from './fs-nav-user-profile/directives/fs-nav-user-profile-actions.directive';
 export { FsNavUserProfileNameDirective } from './fs-nav-user-profile/directives/fs-nav-user-profile-name.directive';
@@ -16,3 +16,4 @@ export { FsNavFrameToolbarCenterDirective } from './nav-frame-toolbar/directives
 export { FsNavFrameToolbarEndDirective } from './nav-frame-toolbar/directives/fs-nav-frame-toolbar-end.directive';
 export { FsNavFrameToolbarStartDirective } from './nav-frame-toolbar/directives/fs-nav-frame-toolbar-start.directive';
 export { FsNavFrameToolbarComponent } from './nav-frame-toolbar/fs-nav-frame-toolbar.component';
+export { FsNavFrameService } from './services/fs-nav-frame.service';

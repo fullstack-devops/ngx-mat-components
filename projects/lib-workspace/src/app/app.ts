@@ -1,5 +1,5 @@
 import { version } from 'packageJson';
-import { Component, HostBinding } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,7 +27,23 @@ import {
   CogIcon,
   PaintBucketIcon,
 } from 'lucide-angular';
-import { FsNavFrameModule, FsCalendarModule, NavFrameConfig, NavFrameSizing, NavRoutes, FsThemeMenu } from 'projects/ngx-mat-components/src/public-api';
+import {
+  FsNavFrameComponent,
+  FsNavFrameSidebar,
+  FsNavFrameSidebarItemComponent,
+  FsNavUserProfileComponent,
+  FsNavUserProfileActionsDirective,
+  FsNavFrameToolbarComponent,
+  FsNavFrameToolbarStartDirective,
+  FsNavFrameToolbarCenterDirective,
+  FsNavFrameToolbarEndDirective,
+  FsNavFrameContentDirective,
+  NavFrameConfig,
+  NavFrameSizing,
+  NavRoutes,
+  FsThemeMenu,
+} from 'projects/ngx-mat-components/src/public-api';
+import { MockUserService } from './services/mockuser.service';
 
 @Component({
   selector: 'app-root',
@@ -46,16 +62,28 @@ import { FsNavFrameModule, FsCalendarModule, NavFrameConfig, NavFrameSizing, Nav
     MatCardModule,
     MatSlideToggleModule,
     MatDialogModule,
-    /* Lib modules */
-    FsNavFrameModule,
-    FsCalendarModule,
+    /* Lib components */
+    FsNavFrameComponent,
+    FsNavFrameSidebar,
+    FsNavFrameSidebarItemComponent,
+    FsNavUserProfileComponent,
+    FsNavUserProfileActionsDirective,
+    FsNavFrameToolbarComponent,
+    FsNavFrameToolbarStartDirective,
+    FsNavFrameToolbarCenterDirective,
+    FsNavFrameToolbarEndDirective,
+    FsNavFrameContentDirective,
     FsThemeMenu,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App {
+export class App implements AfterViewInit {
   title = 'FS DevOps`s ng mat components';
+
+  private readonly mockUserService = inject(MockUserService);
+
   readonly CircleQuestionMarkIcon = CircleQuestionMarkIcon;
   readonly NewspaperIcon = NewspaperIcon;
   readonly BellIcon = BellIcon;
@@ -63,6 +91,12 @@ export class App {
   readonly LogOutIcon = LogOutIcon;
   readonly CogIcon = CogIcon;
   readonly PaintBucketIcon = PaintBucketIcon;
+
+  readonly userProfile = this.mockUserService.user;
+
+  ngAfterViewInit(): void {
+    this.mockUserService.loadUser();
+  }
 
   @HostBinding('attr.app-version') appVersion = version;
 

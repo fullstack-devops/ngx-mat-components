@@ -1,4 +1,6 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, HostListener, inject, input, OnInit, output, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 import * as dateFns from 'date-fns';
 import { CalendarEvent, CalendarExtendedDay, CalendarPanels, CalendarPanelSum } from '../calendar.models';
 import { FsCalendarService } from '../services/fs-calendar.service';
@@ -7,14 +9,17 @@ import { FsCalendarService } from '../services/fs-calendar.service';
   selector: 'fs-calendar-panels',
   templateUrl: './calendar-panels.component.html',
   styleUrls: ['./calendar-panels.component.scss'],
+  imports: [CommonModule, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'fs-calendar-panels',
     'data-component-id': 'fs-calendar-panels-unique',
   },
-  standalone: false,
 })
 export class FsCalendarPanelsComponent implements OnInit {
-  private _dataSource: CalendarPanels<any> = {
+  private readonly calendarService = inject(FsCalendarService);
+
+  dataSource = input<CalendarPanels<any>>({
     config: {
       renderMode: 'monthly',
       selectMode: 'click',
@@ -27,108 +32,95 @@ export class FsCalendarPanelsComponent implements OnInit {
       panelWidth: '350px',
     },
     data: [],
-  };
+  });
 
-  private _month = new Date().getUTCMonth();
-  private _year: number = new Date().getFullYear();
-  private _monthsBefore: number = 0;
-  private _monthsAfter: number = 0;
+  month = input<number>(new Date().getUTCMonth());
+  year = input<number>(new Date().getFullYear());
+  monthsBefore = input<number>(0);
+  monthsAfter = input<number>(0);
+  placeholderDay = input<boolean>(false);
 
-  calendar: CalendarPanelSum | undefined;
-  today = new Date();
-  selectedDayStart: CalendarExtendedDay<any> | undefined;
-  selectedDayBetween: CalendarExtendedDay<any>[] = [];
-  selectedDayEnd: CalendarExtendedDay<any> | undefined;
-  markWeekend = this._dataSource.config.markWeekend;
-  bluredDays = this._dataSource.config.bluredDays;
-  isLoading = true;
-  monthOverrride = false;
+  selection = output<CalendarEvent<any>>();
 
-  weekendColor = 'rgba(0, 0, 0, .25)';
+  private readonly internalMonth = signal<number>(new Date().getUTCMonth());
+  private readonly internalYear = signal<number>(new Date().getFullYear());
 
-  get dataSource(): CalendarPanels<any> {
-    return this._dataSource;
-  }
-  get month(): number {
-    return this._month;
-  }
-  get year(): number {
-    return this._year;
-  }
-  get monthsBefore(): number {
-    return this._monthsBefore;
-  }
-  get monthsAfter(): number {
-    return this._monthsAfter;
-  }
+  protected readonly calendar = computed<CalendarPanelSum | undefined>(() => {
+    const ds = this.dataSource();
+    const usedYear = this.monthOverrride() ? this.internalYear() : this.year();
+    const usedMonth = this.monthOverrride() ? this.internalMonth() : this.month();
 
-  @Input()
-  set dataSource(data: CalendarPanels<any>) {
-    this._dataSource = data;
-    this.generateCal();
-  }
-  @Input()
-  set month(data: number) {
-    this._month = data;
-    this.monthOverrride = false;
-    this.generateCal();
-  }
-  @Input()
-  set year(data: number) {
-    this._year = data;
-    this.generateCal();
-  }
-  @Input()
-  set monthsBefore(data: number) {
-    this._monthsBefore = data;
-    this.generateCal();
-  }
-  @Input()
-  set monthsAfter(data: number) {
-    this._monthsAfter = data;
-    this.generateCal();
-  }
-  @Input() placeholderDay: boolean = false;
+    return this.calendarService.generateMatrix(
+      ds.config.renderMode,
+      ds.config.calendarWeek,
+      ds.data,
+      usedYear,
+      usedMonth,
+      this.monthsBefore(),
+      this.monthsAfter()
+    );
+  });
 
-  @Output() readonly selection = new EventEmitter<CalendarEvent<any>>();
+  protected readonly today = new Date();
+  protected readonly selectedDayStart = signal<CalendarExtendedDay<any> | undefined>(undefined);
+  protected readonly selectedDayBetween = signal<CalendarExtendedDay<any>[]>([]);
+  protected readonly selectedDayEnd = signal<CalendarExtendedDay<any> | undefined>(undefined);
+  protected readonly monthOverrride = signal<boolean>(false);
+  protected readonly isLoading = signal<boolean>(true);
+
+  protected readonly markWeekend = computed(() => this.dataSource().config.markWeekend);
+  protected readonly bluredDays = computed(() => this.dataSource().config.bluredDays);
+  protected readonly weekendColor = 'rgba(0, 0, 0, .25)';
+
+  constructor() {
+    // Sync input signals to internal signals on changes
+    effect(() => {
+      this.internalMonth.set(this.month());
+      this.internalYear.set(this.year());
+    });
+  }
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.key === 'Escape') {
-      this.selectedDayBetween = [];
-      this.selectedDayStart = undefined;
-      this.selectedDayEnd = undefined;
+      this.selectedDayBetween.set([]);
+      this.selectedDayStart.set(undefined);
+      this.selectedDayEnd.set(undefined);
     }
   }
 
-  constructor(private calendarService: FsCalendarService) {}
-
   ngOnInit() {
-    this.isLoading = false;
+    this.isLoading.set(false);
   }
 
   onClick(day: CalendarExtendedDay<any>, type: string) {
-    if (type === 'date' && this._dataSource.config.selectMode === 'range') {
-      if (this.selectedDayStart != undefined && this.selectedDayEnd != undefined) {
-        this.selectedDayBetween = [];
-        this.selectedDayStart = undefined;
-        this.selectedDayEnd = undefined;
-      }
-      if (dateFns.isBefore(day.date, this.selectedDayStart?.date as Date) || this.selectedDayStart === undefined) {
-        this.selectedDayStart = day;
-      } else {
-        this.selectedDayEnd = day;
+    const config = this.dataSource().config;
 
-        let daysBetween: number = dateFns.differenceInDays(this.selectedDayStart.date, this.selectedDayEnd.date);
+    if (type === 'date' && config.selectMode === 'range') {
+      const start = this.selectedDayStart();
+      const end = this.selectedDayEnd();
+
+      if (start != undefined && end != undefined) {
+        this.selectedDayBetween.set([]);
+        this.selectedDayStart.set(undefined);
+        this.selectedDayEnd.set(undefined);
+      }
+
+      if (dateFns.isBefore(day.date, start?.date as Date) || start === undefined) {
+        this.selectedDayStart.set(day);
+      } else {
+        this.selectedDayEnd.set(day);
+
+        let daysBetween: number = dateFns.differenceInDays(start.date, day.date);
         let daysAffected: CalendarExtendedDay<any>[] = [];
 
-        daysAffected.push(this.selectedDayStart);
+        daysAffected.push(start);
         if (daysBetween < 0) {
           for (let index = 1; index < daysBetween * -1 + 1; index++) {
-            let newGeneratedDay = this.calendarService.generateDay(dateFns.addDays(this.selectedDayStart.date, index), []);
-            let i = this.dataSource.data.findIndex(sd => dateFns.isSameDay(sd.date, newGeneratedDay.date));
+            let newGeneratedDay = this.calendarService.generateDay(dateFns.addDays(start.date, index), []);
+            let i = this.dataSource().data.findIndex(sd => dateFns.isSameDay(sd.date, newGeneratedDay.date));
             if (i != -1) {
-              daysAffected.push(this.dataSource.data[i]);
+              daysAffected.push(this.dataSource().data[i]);
             } else {
               daysAffected.push(newGeneratedDay);
             }
@@ -137,8 +129,8 @@ export class FsCalendarPanelsComponent implements OnInit {
 
         this.selection.emit({
           type: 'range',
-          start: this.selectedDayStart,
-          end: this.selectedDayEnd,
+          start: start,
+          end: day,
           affectedDays: daysAffected,
         });
       }
@@ -151,39 +143,46 @@ export class FsCalendarPanelsComponent implements OnInit {
   }
 
   onMouseOver(dateComp: Date) {
-    if (this.calendar != undefined) {
-      if (this.selectedDayStart != undefined && this.selectedDayEnd == undefined) {
-        this.selectedDayBetween = this.calendar.daysAbsolute.filter(date => {
-          return dateFns.isAfter(date.date, this.selectedDayStart?.date as Date) && dateFns.isBefore(date.date, dateComp);
-        });
+    const cal = this.calendar();
+    const start = this.selectedDayStart();
+    const end = this.selectedDayEnd();
+
+    if (cal != undefined) {
+      if (start != undefined && end == undefined) {
+        this.selectedDayBetween.set(
+          cal.daysAbsolute.filter(date => {
+            return dateFns.isAfter(date.date, start.date) && dateFns.isBefore(date.date, dateComp);
+          })
+        );
       }
     }
   }
 
   getAmIBetween(date: Date): boolean {
-    const fIndex = this.selectedDayBetween.findIndex(selDate => {
+    const between = this.selectedDayBetween();
+    const fIndex = between.findIndex(selDate => {
       return dateFns.isSameDay(selDate.date, date);
     });
-    if (fIndex != -1) {
-      return true;
-    } else {
-      return false;
-    }
+    return fIndex != -1;
   }
 
   isSelectedDayStart(date: Date): boolean {
-    if (this.selectedDayStart) {
-      return dateFns.isSameDay(this.selectedDayStart.date, date);
-    } else {
-      return false;
+    const start = this.selectedDayStart();
+    if (start) {
+      return dateFns.isSameDay(start.date, date);
     }
+    return false;
   }
+
   isSelectedDayEnd(date: Date): boolean {
-    if (this.selectedDayEnd) {
-      return dateFns.isSameDay(this.selectedDayEnd.date, date);
+    const end = this.selectedDayEnd();
+    const between = this.selectedDayBetween();
+
+    if (end) {
+      return dateFns.isSameDay(end.date, date);
     } else {
-      if (this.selectedDayBetween.length > 0) {
-        if (dateFns.isSameDay(this.calendarService.addDays(this.selectedDayBetween[this.selectedDayBetween.length - 1], 1).date, date)) {
+      if (between.length > 0) {
+        if (dateFns.isSameDay(this.calendarService.addDays(between[between.length - 1], 1).date, date)) {
           return true;
         }
       }
@@ -196,54 +195,45 @@ export class FsCalendarPanelsComponent implements OnInit {
   }
 
   getCanIBeHighlighted(date: Date) {
-    if (this.selectedDayEnd) {
+    const start = this.selectedDayStart();
+    const end = this.selectedDayEnd();
+
+    if (end) {
       if (
-        (!dateFns.isSameDay(this.selectedDayStart?.date as Date, date) && !dateFns.isSameDay(this.selectedDayEnd?.date, date) && this.getAmIBetween(date)) ||
-        (dateFns.isSameDay(this.selectedDayEnd?.date, date) && this.selectedDayEnd != undefined) ||
-        (dateFns.isSameDay(this.selectedDayStart?.date as Date, date) && this.selectedDayStart != undefined)
+        (!dateFns.isSameDay(start?.date as Date, date) && !dateFns.isSameDay(end.date, date) && this.getAmIBetween(date)) ||
+        (dateFns.isSameDay(end.date, date) && end != undefined) ||
+        (dateFns.isSameDay(start?.date as Date, date) && start != undefined)
       ) {
         return true;
-      } else {
-        return false;
       }
-    } else {
       return false;
     }
+    return false;
   }
 
   onMonthForward() {
-    this.monthOverrride = true;
-    if (this.month >= 11 || this._month >= 11) {
-      this._year = parseInt(this.year.toString(), 10) + 1;
-      this._month = 0;
+    this.monthOverrride.set(true);
+    const currentMonth = this.internalMonth();
+    const currentYear = this.internalYear();
+
+    if (currentMonth >= 11) {
+      this.internalYear.set(currentYear + 1);
+      this.internalMonth.set(0);
     } else {
-      this._month = parseInt(this._month.toString(), 10) + 1;
+      this.internalMonth.set(currentMonth + 1);
     }
-    this.generateCal();
   }
 
   onMonthBackward() {
-    this.monthOverrride = true;
-    if (this.month <= 0 || this._month <= 0) {
-      this._year = parseInt(this.year.toString(), 10) - 1;
-      this._month = 11;
-    } else {
-      this._month = parseInt(this._month.toString(), 10) - 1;
-    }
-    this.generateCal();
-  }
+    this.monthOverrride.set(true);
+    const currentMonth = this.internalMonth();
+    const currentYear = this.internalYear();
 
-  private generateCal() {
-    const usedYear = this.monthOverrride ? this._year : this.year;
-    const usedMonth = this.monthOverrride ? this._month : this.month;
-    this.calendar = this.calendarService.generateMatrix(
-      this._dataSource.config.renderMode,
-      this._dataSource.config.calendarWeek,
-      this.dataSource.data,
-      usedYear,
-      usedMonth,
-      this.monthsBefore,
-      this.monthsAfter
-    );
+    if (currentMonth <= 0) {
+      this.internalYear.set(currentYear - 1);
+      this.internalMonth.set(11);
+    } else {
+      this.internalMonth.set(currentMonth - 1);
+    }
   }
 }
