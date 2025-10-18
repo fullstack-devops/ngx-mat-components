@@ -1,25 +1,28 @@
 <div class="profile-pic-button-wrapper">
-  <button (click)="toggleSidemenu()">
-    <svg
-      *ngIf="profilePicture == ''"
-      xmlns="http://www.w3.org/2000/svg"
-      width="48"
-      height="48"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="1"
-      stroke-linecap="round"
-      stroke-linejoin="round">
-      <path d="M18 20a6 6 0 0 0-12 0" />
-      <circle cx="12" cy="10" r="4" />
-      <circle cx="12" cy="12" r="10" />
-    </svg>
-    <div class="default-profile-pic" *ngIf="profilePicture != ''" style="background-image: url('{{ profilePicture }}');"></div>
+  <button (click)="toggleSidemenu()" aria-label="User profile menu" title="User profile">
+    @if (profilePicture() === '') {
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M18 20a6 6 0 0 0-12 0" />
+        <circle cx="12" cy="10" r="4" />
+        <circle cx="12" cy="12" r="10" />
+      </svg>
+    }
+    @if (profilePicture() !== '') {
+      <div class="default-profile-pic" [style.background-image]="'url(' + profilePicture() + ')'"></div>
+    }
   </button>
 </div>
 
-<div class="profile-content-wrapper" [class.opened]="opened">
+<div class="profile-content-wrapper" [class.opened]="opened()">
   <div class="user-infos">
     <ng-content select="fs-nav-user-profile-name"></ng-content>
     <ng-content select="fs-nav-user-profile-subname"></ng-content>

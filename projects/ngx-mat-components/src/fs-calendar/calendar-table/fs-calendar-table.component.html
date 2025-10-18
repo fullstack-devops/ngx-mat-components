@@ -1,66 +1,75 @@
 <div class="fs-calendar-table-helper">
-  <table *ngIf="!isLoading">
-    <thead role="rowgroup">
-      <tr>
-        <th>
-          <ng-content select="fs-calendar-table-name"></ng-content>
-        </th>
-        <th>
-          <button mat-icon-button class="fs-calendar-switches" (click)="onMonthBackward()">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="48"
-              height="48"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-chevron-left-icon lucide-chevron-left">
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-          </button>
-        </th>
-        <th
-          *ngFor="let day of currentMonth.days"
-          [class.date-today]="isToday(day.date)"
-          [class.weekend]="day._meta?.isWeekendDay && !isToday(day.date) && markWeekend">
-          {{ day._meta?.dayNumber }}
-          <br />
-          {{ currentMonth.dayNames[day._meta!.dayOfWeek - 1] }}
-        </th>
-        <th>
-          <button mat-icon-button class="fs-calendar-switches" (click)="onMonthForward()">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="48"
-              height="48"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-chevron-right-icon lucide-chevron-right">
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </button>
-        </th>
-      </tr>
-    </thead>
+  @if (!isLoading()) {
+    <table>
+      <thead role="rowgroup">
+        <tr>
+          <th>
+            <ng-content select="fs-calendar-table-name"></ng-content>
+          </th>
+          <th>
+            <button mat-icon-button class="fs-calendar-switches" (click)="onMonthBackward()" aria-label="Previous month" title="Previous month">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-left-icon lucide-chevron-left">
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+          </th>
+          @for (day of currentMonth().days; track day.date) {
+            <th
+              [class.date-today]="isToday(day.date)"
+              [class.weekend]="day._meta?.isWeekendDay && !isToday(day.date) && markWeekend">
+              {{ day._meta?.dayNumber }}
+              <br />
+              {{ currentMonth().dayNames[day._meta!.dayOfWeek - 1] }}
+            </th>
+          }
+          <th>
+            <button mat-icon-button class="fs-calendar-switches" (click)="onMonthForward()" aria-label="Next month" title="Next month">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+          </th>
+        </tr>
+      </thead>
 
-    <tbody role="rowgroup">
-      <tr *ngFor="let entry of tableData">
-        <td colspan="2">{{ entry.name }}</td>
-        <td *ngFor="let day of entry.data" [class.tooltip]="day.toolTip" [class.weekend]="day._meta?.isWeekendDay && markWeekend">
-          <span class="tooltiptext" *ngIf="day.toolTip">{{ day.toolTip }}</span>
-          <div class="box box-base" [style.backgroundColor]="day.colors?.backgroundColor" [style.color]="day.colors?.color">
-            {{ day.char }}
-          </div>
-        </td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+      <tbody role="rowgroup">
+        @for (entry of tableData(); track entry.name) {
+          <tr>
+            <td colspan="2">{{ entry.name }}</td>
+            @for (day of entry.data; track day.date) {
+              <td [class.tooltip]="day.toolTip" [class.weekend]="day._meta?.isWeekendDay && markWeekend">
+                @if (day.toolTip) {
+                  <span class="tooltiptext">{{ day.toolTip }}</span>
+                }
+                <div class="box box-base" [style.backgroundColor]="day.colors?.backgroundColor" [style.color]="day.colors?.color">
+                  {{ day.char }}
+                </div>
+              </td>
+            }
+            <td></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
 </div>

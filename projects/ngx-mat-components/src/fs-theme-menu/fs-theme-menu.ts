@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, OnInit, output, signal } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { FsCheckSvg } from './fs-check-svg';
 import { FsThemeIcon } from './fs-theme-icon/fs-theme-icon';
 import { MatButtonModule } from '@angular/material/button';
+import { DOCUMENT } from '@angular/common';
 
 export enum FsThemeColorSchemes {
   Auto = 'auto',
@@ -15,51 +16,56 @@ export enum FsThemeColorSchemes {
   imports: [MatMenuModule, MatButtonModule, FsCheckSvg, FsThemeIcon],
   templateUrl: './fs-theme-menu.html',
   styleUrls: ['./fs-theme-menu.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FsThemeMenu implements OnInit {
-  private _theme: FsThemeColorSchemes = FsThemeColorSchemes.Auto;
+  private readonly document = inject(DOCUMENT);
   readonly FsThemeColorSchemes = FsThemeColorSchemes;
 
-  @Input() localStorageKey = 'fs-selected-theme';
-  @Input()
-  set theme(value: FsThemeColorSchemes) {
-    this._theme = value;
-    const body = document.body;
-    body.classList.remove(FsThemeColorSchemes.Light, FsThemeColorSchemes.Dark);
+  localStorageKey = input<string>('fs-selected-theme');
+  theme = input<FsThemeColorSchemes>(FsThemeColorSchemes.Auto);
+  themeChange = output<FsThemeColorSchemes>();
 
-    // Persist only if not auto
-    if (value && value !== FsThemeColorSchemes.Auto) {
-      body.classList.add(value);
-      localStorage.setItem(this.localStorageKey, value);
-    } else {
-      localStorage.removeItem(this.localStorageKey);
-    }
-    this.themeChange.emit(value);
+  private readonly currentTheme = signal<FsThemeColorSchemes>(FsThemeColorSchemes.Auto);
+
+  constructor() {
+    // Apply theme changes to DOM and localStorage
+    effect(() => {
+      const themeValue = this.currentTheme();
+      const body = this.document.body;
+
+      body.classList.remove(FsThemeColorSchemes.Light, FsThemeColorSchemes.Dark);
+
+      // Persist only if not auto
+      if (themeValue && themeValue !== FsThemeColorSchemes.Auto) {
+        body.classList.add(themeValue);
+        localStorage.setItem(this.localStorageKey(), themeValue);
+      } else {
+        localStorage.removeItem(this.localStorageKey());
+      }
+
+      this.themeChange.emit(themeValue);
+    });
   }
-  get theme(): FsThemeColorSchemes {
-    return this._theme;
-  }
-  @Output() themeChange = new EventEmitter<FsThemeColorSchemes>();
 
   ngOnInit() {
     this.loadThemeFromStorage();
   }
 
   isSelected(requested: FsThemeColorSchemes): boolean {
-    return this.theme === requested;
+    return this.currentTheme() === requested;
   }
 
   onColorSchemeChange(value: FsThemeColorSchemes): void {
-    this.theme = value;
+    this.currentTheme.set(value);
   }
 
-  // Call this in ngOnInit or constructor
   loadThemeFromStorage() {
-    const stored = localStorage.getItem(this.localStorageKey) as FsThemeColorSchemes;
+    const stored = localStorage.getItem(this.localStorageKey()) as FsThemeColorSchemes;
     if (stored === FsThemeColorSchemes.Light || stored === FsThemeColorSchemes.Dark) {
-      this.theme = stored;
+      this.currentTheme.set(stored);
     } else {
-      this.theme = FsThemeColorSchemes.Auto;
+      this.currentTheme.set(FsThemeColorSchemes.Auto);
     }
   }
 }
