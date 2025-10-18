@@ -15,8 +15,9 @@ import { FsNavFrameService, MenuState } from '../../services/fs-nav-frame.servic
   },
 })
 export class FsNavFrameSidebarItemComponent {
-  // Input signal
+  // Input signals
   readonly routerLink = input<string | undefined>();
+  readonly label = input<string>('');
 
   @ViewChild(TemplateRef) template: TemplateRef<any> | undefined;
 

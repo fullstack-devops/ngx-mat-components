@@ -1,4 +1,4 @@
-<button [routerLink]="routerLink()" routerLinkActive="active-link">
+<button [routerLink]="routerLink()" routerLinkActive="active-link" [attr.aria-label]="label()" [attr.title]="label()">
   <ng-content select="i, span-lucide"></ng-content>
   <ng-content select="span" class="nav-label"></ng-content>
 </button>

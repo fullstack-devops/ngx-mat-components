@@ -4,12 +4,7 @@
       <div class="fs-calendar-month">
         <div class="month-header">
           @if (dataSource().config.switches && dataSource().config.renderMode != 'annual' && iMonth == 0) {
-            <button
-              mat-icon-button
-              (click)="onMonthBackward()"
-              class="fs-calendar-switches"
-              aria-label="Previous month"
-              title="Previous month">
+            <button mat-icon-button (click)="onMonthBackward()" class="fs-calendar-switches" aria-label="Previous month" title="Previous month">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="48"
@@ -32,12 +27,7 @@
             {{ dataSource().config.displayYear ? month.year : '' }}
           </div>
           @if (dataSource().config.switches && dataSource().config.renderMode != 'annual' && (calendar()?.calendarPanels?.length ?? 0) == iMonth + 1) {
-            <button
-              mat-icon-button
-              (click)="onMonthForward()"
-              class="fs-calendar-switches"
-              aria-label="Next month"
-              title="Next month">
+            <button mat-icon-button (click)="onMonthForward()" class="fs-calendar-switches" aria-label="Next month" title="Next month">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="48"
@@ -76,7 +66,7 @@
           <tbody role="grid" class="fs-calendar-body">
             @for (row of month.render; track $index; let iRender = $index) {
               <tr role="row">
-                @for (day of row; track day.date; let iDay = $index) {
+                @for (day of row; track day.date.getTime() + '-' + $index; let iDay = $index) {
                   @if (day._meta?.type == 'day') {
                     <td
                       role="gridcell"
@@ -102,16 +92,11 @@
                         style="z-index: -3; border-radius: 4px"
                         [class.weekend]="day._meta?.isWeekendDay && day.colors?.backgroundColor != '' && markWeekend()"
                         [class.blured-days]="bluredDays() && day.colors?.backgroundColor"
-                        [ngStyle]="{ background: day.colors?.backgroundColor }">
-                      </div>
+                        [ngStyle]="{ background: day.colors?.backgroundColor }"></div>
                     </td>
                   }
                   @if (day._meta?.type == 'cw') {
-                    <td
-                      role="gridcell"
-                      class="fs-calendar-body-cell kw"
-                      tabindex="-1"
-                      [ngClass]="dataSource().config.calendarWeek ? 'eight' : 'seven'">
+                    <td role="gridcell" class="fs-calendar-body-cell kw" tabindex="-1" [ngClass]="dataSource().config.calendarWeek ? 'eight' : 'seven'">
                       @if (row[iDay + 1]._meta?.type == 'plHolder' && iRender != 0) {
                         <div>{{ placeholderDay() ? day._meta?.kw : '' }}</div>
                       } @else {
@@ -132,11 +117,7 @@
                     </td>
                   }
                   @if (day._meta?.type == 'plHolder' && !placeholderDay()) {
-                    <td
-                      role="gridcell"
-                      class="fs-calendar-body-cell"
-                      tabindex="-1"
-                      [ngClass]="dataSource().config.calendarWeek ? 'eight' : 'seven'">
+                    <td role="gridcell" class="fs-calendar-body-cell" tabindex="-1" [ngClass]="dataSource().config.calendarWeek ? 'eight' : 'seven'">
                       <div></div>
                     </td>
                   }

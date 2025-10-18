@@ -2,9 +2,7 @@
   <div class="logo-wrapper">
     <button mat-icon-button (click)="toggleSidemenu()" aria-label="Toggle navigation menu" title="Toggle menu">
       @if (navFrameConfig().logoSrc !== '' && navFrameConfig().logoSrc !== undefined) {
-        <div
-          class="logo-picture"
-          [style.background-image]="'url(' + navFrameConfig().logoSrc + ')'"></div>
+        <div class="logo-picture" [style.background-image]="'url(' + navFrameConfig().logoSrc + ')'"></div>
       }
       @if (navFrameConfig().logoSrc === '' || navFrameConfig().logoSrc === undefined) {
         <svg

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
@@ -7,6 +7,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
   selector: 'app-showcase-nav-frame',
   imports: [CommonModule, MatButtonModule, MatDialogModule],
   templateUrl: './showcase-nav-frame.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowcaseNavFrameComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
@@ -28,5 +29,6 @@ export class ShowcaseNavFrameComponent implements OnInit {
   selector: 'dialog-content-example-dialog',
   templateUrl: 'dialog-content-example-dialog.html',
   imports: [MatDialogModule, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogContentExampleDialog {}

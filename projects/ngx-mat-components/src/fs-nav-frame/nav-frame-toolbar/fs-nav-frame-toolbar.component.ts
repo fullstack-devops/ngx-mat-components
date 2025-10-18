@@ -1,8 +1,10 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, ContentChild, inject, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { FsNavFrameService, MenuState } from '../services/fs-nav-frame.service';
 
 @Component({
   selector: 'fs-nav-frame-toolbar',
+  imports: [NgTemplateOutlet],
   templateUrl: './fs-nav-frame-toolbar.component.html',
   styleUrls: ['./fs-nav-frame-toolbar.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input, OnInit, output, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import * as dateFns from 'date-fns';
 import { CalendarMonth, CalendarTableEntry } from '../calendar.models';
 import { FsCalendarService } from '../services/fs-calendar.service';
 
 @Component({
   selector: 'fs-calendar-table',
+  imports: [MatButtonModule],
   templateUrl: './fs-calendar-table.component.html',
   styleUrls: ['./fs-calendar-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

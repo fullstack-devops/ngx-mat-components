@@ -26,9 +26,7 @@ export class FsNavFrameService {
 
   // Actions
   switchMenuState(): void {
-    this._menuState.update(state =>
-      state === MenuState.OPENED ? MenuState.CLOSED : MenuState.OPENED
-    );
+    this._menuState.update(state => (state === MenuState.OPENED ? MenuState.CLOSED : MenuState.OPENED));
   }
 
   changeMenuStateToClosed(): void {

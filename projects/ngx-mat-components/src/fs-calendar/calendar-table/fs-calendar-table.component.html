@@ -24,9 +24,7 @@
             </button>
           </th>
           @for (day of currentMonth().days; track day.date) {
-            <th
-              [class.date-today]="isToday(day.date)"
-              [class.weekend]="day._meta?.isWeekendDay && !isToday(day.date) && markWeekend">
+            <th [class.date-today]="isToday(day.date)" [class.weekend]="day._meta?.isWeekendDay && !isToday(day.date) && markWeekend">
               {{ day._meta?.dayNumber }}
               <br />
               {{ currentMonth().dayNames[day._meta!.dayOfWeek - 1] }}

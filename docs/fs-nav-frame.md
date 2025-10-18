@@ -31,13 +31,13 @@ import { FsNavFrameModule } from '@fullstack-devops/ngx-mat-components';
 - [`FsNavFrameSidebarItemComponent`](../projects/ngx-mat-components/src/fs-nav-frame/components/fs-nav-frame-sidebar-item/fs-nav-frame-sidebar-item.component.ts)
 - [`FsNavUserProfileComponent`](../projects/ngx-mat-components/src/fs-nav-frame/fs-nav-user-profile/fs-nav-user-profile.component.ts)
 - [`FsNavFrameContentDirective`](../projects/ngx-mat-components/src/fs-nav-frame/directives/fs-nav-frame-content.directive.ts)
-- Toolbar slot directives:  
-  - [`FsNavFrameToolbarStartDirective`](../projects/ngx-mat-components/src/fs-nav-frame/nav-frame-toolbar/directives/fs-nav-frame-toolbar-start.directive.ts)  
-  - [`FsNavFrameToolbarCenterDirective`](../projects/ngx-mat-components/src/fs-nav-frame/nav-frame-toolbar/directives/fs-nav-frame-toolbar-center.directive.ts)  
+- Toolbar slot directives:
+  - [`FsNavFrameToolbarStartDirective`](../projects/ngx-mat-components/src/fs-nav-frame/nav-frame-toolbar/directives/fs-nav-frame-toolbar-start.directive.ts)
+  - [`FsNavFrameToolbarCenterDirective`](../projects/ngx-mat-components/src/fs-nav-frame/nav-frame-toolbar/directives/fs-nav-frame-toolbar-center.directive.ts)
   - [`FsNavFrameToolbarEndDirective`](../projects/ngx-mat-components/src/fs-nav-frame/nav-frame-toolbar/directives/fs-nav-frame-toolbar-end.directive.ts)
-- User profile slot directives:  
-  - [`FsNavUserProfileNameDirective`](../projects/ngx-mat-components/src/fs-nav-frame/fs-nav-user-profile/directives/fs-nav-user-profile-name.directive.ts)  
-  - [`FsNavUserProfileSubNameDirective`](../projects/ngx-mat-components/src/fs-nav-frame/fs-nav-user-profile/directives/fs-nav-user-profile-subname.directive.ts)  
+- User profile slot directives:
+  - [`FsNavUserProfileNameDirective`](../projects/ngx-mat-components/src/fs-nav-frame/fs-nav-user-profile/directives/fs-nav-user-profile-name.directive.ts)
+  - [`FsNavUserProfileSubNameDirective`](../projects/ngx-mat-components/src/fs-nav-frame/fs-nav-user-profile/directives/fs-nav-user-profile-subname.directive.ts)
   - [`FsNavUserProfileActionsDirective`](../projects/ngx-mat-components/src/fs-nav-frame/fs-nav-user-profile/directives/fs-nav-user-profile-actions.directive.ts)
 
 ---
@@ -86,9 +86,9 @@ import { FsNavFrameModule } from '@fullstack-devops/ngx-mat-components';
 
 ```ts
 export interface NavFrameConfig {
-  appName?: string;        // Displayed app name (opened mode)
-  appVersion?: string;     // Optional app version
-  logoSrc?: string;        // Optional logo URL
+  appName?: string; // Displayed app name (opened mode)
+  appVersion?: string; // Optional app version
+  logoSrc?: string; // Optional logo URL
   sizing?: NavFrameSizing; // Optional sizing config
 }
 ```
@@ -97,7 +97,7 @@ export interface NavFrameConfig {
 
 ```ts
 export interface NavFrameSizing {
-  toolbarHeight?: number;      // Toolbar height in rem (default: 3)
+  toolbarHeight?: number; // Toolbar height in rem (default: 3)
   sidebarWidthClosed?: number; // Sidebar width (closed) in rem (default: 4)
   sidebarWidthOpened?: number; // Sidebar width (opened) in rem (default: 18)
 }
@@ -134,13 +134,14 @@ export interface NavFrameSizing {
 ## Theming & Styling
 
 - The module supports Material 3 theming.
-- SCSS mixin: `fs-nav-frame-theme` ([styles/fs-nav-frame/_theming.scss](../projects/ngx-mat-components/styles/fs-nav-frame/_theming.scss))
+- SCSS mixin: `fs-nav-frame-theme` ([styles/fs-nav-frame/\_theming.scss](../projects/ngx-mat-components/styles/fs-nav-frame/_theming.scss))
 - To use the theme in your styles:
+
   ```scss
   @use '@fullstack-devops/ngx-mat-components' as fsc;
- 
+
   @include mat.app-background();
-  
+
   @include fsc.core();
   ```
 

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, effect, HostListener, inject, input, OnInit, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 import * as dateFns from 'date-fns';
 import { CalendarEvent, CalendarExtendedDay, CalendarPanels, CalendarPanelSum } from '../calendar.models';
 import { FsCalendarService } from '../services/fs-calendar.service';
@@ -8,7 +9,7 @@ import { FsCalendarService } from '../services/fs-calendar.service';
   selector: 'fs-calendar-panels',
   templateUrl: './calendar-panels.component.html',
   styleUrls: ['./calendar-panels.component.scss'],
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'fs-calendar-panels',

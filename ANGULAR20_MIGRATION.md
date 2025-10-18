@@ -21,45 +21,45 @@
 
 ## 📦 Current Component Inventory
 
-### **## 📅 Timeline
+### \*\*## 📅 Timeline
 
-| Phase | Duration | Status |
-|-------|----------|--------|
-| **Phase 1: Framework Upgrade** | 2 days | ✅ **DONE** (Oct 18, 2025) |
-| **Phase 2: Remove NgModules** | 3 days | ✅ **DONE** (Oct 18, 2025) |
-| **Phase 3: Signal-Based** | 5 days | 🔨 In Progress |
-| **Phase 4: Control Flow** | 2 days | 🔜 Pending |
-| **Phase 5: OnPush** | 1 day | 🔜 Pending |
-| **Phase 6: 2-Level Nav** | 3 days | 🔜 Pending |
-| **Phase 7: Testing** | 4 days | 🔜 Later |
-| **Total** | **~3 weeks** | 🔨 In Progress |nts**
+| Phase                          | Duration     | Status                     |
+| ------------------------------ | ------------ | -------------------------- | ------- |
+| **Phase 1: Framework Upgrade** | 2 days       | ✅ **DONE** (Oct 18, 2025) |
+| **Phase 2: Remove NgModules**  | 3 days       | ✅ **DONE** (Oct 18, 2025) |
+| **Phase 3: Signal-Based**      | 5 days       | 🔨 In Progress             |
+| **Phase 4: Control Flow**      | 2 days       | 🔜 Pending                 |
+| **Phase 5: OnPush**            | 1 day        | 🔜 Pending                 |
+| **Phase 6: 2-Level Nav**       | 3 days       | 🔜 Pending                 |
+| **Phase 7: Testing**           | 4 days       | 🔜 Later                   |
+| **Total**                      | **~3 weeks** | 🔨 In Progress             | nts\*\* |
 
-| Component | Location | Status | Priority |
-|-----------|----------|--------|----------|
-| `fs-nav-frame` | `/fs-nav-frame/fs-nav-frame.component.ts` | 🔴 Legacy | High |
-| `fs-nav-frame-toolbar` | `/fs-nav-frame/nav-frame-toolbar/` | 🔴 Legacy | High |
-| `fs-nav-frame-sidebar` | `/fs-nav-frame/components/` | 🔴 Legacy | High |
-| `fs-nav-frame-sidebar-item` | `/fs-nav-frame/components/` | 🔴 Legacy | High |
-| `fs-nav-user-profile` | `/fs-nav-frame/fs-nav-user-profile/` | 🔴 Legacy | High |
-| `fs-theme-menu` | `/fs-theme-menu/` | 🔴 Legacy | Medium |
-| `fs-calendar` | `/fs-calendar/` | 🔴 Legacy | Low |
+| Component                   | Location                                  | Status    | Priority |
+| --------------------------- | ----------------------------------------- | --------- | -------- |
+| `fs-nav-frame`              | `/fs-nav-frame/fs-nav-frame.component.ts` | 🔴 Legacy | High     |
+| `fs-nav-frame-toolbar`      | `/fs-nav-frame/nav-frame-toolbar/`        | 🔴 Legacy | High     |
+| `fs-nav-frame-sidebar`      | `/fs-nav-frame/components/`               | 🔴 Legacy | High     |
+| `fs-nav-frame-sidebar-item` | `/fs-nav-frame/components/`               | 🔴 Legacy | High     |
+| `fs-nav-user-profile`       | `/fs-nav-frame/fs-nav-user-profile/`      | 🔴 Legacy | High     |
+| `fs-theme-menu`             | `/fs-theme-menu/`                         | 🔴 Legacy | Medium   |
+| `fs-calendar`               | `/fs-calendar/`                           | 🔴 Legacy | Low      |
 
 ### **Directives**
 
-| Directive | Location | Status | Priority |
-|-----------|----------|--------|----------|
-| `FsNavFrameContentDirective` | `/fs-nav-frame/directives/` | 🔴 Legacy | High |
-| `FsNavFrameToolbarStartDirective` | `/fs-nav-frame/nav-frame-toolbar/directives/` | 🔴 Legacy | High |
-| `FsNavFrameToolbarCenterDirective` | `/fs-nav-frame/nav-frame-toolbar/directives/` | 🔴 Legacy | High |
-| `FsNavFrameToolbarEndDirective` | `/fs-nav-frame/nav-frame-toolbar/directives/` | 🔴 Legacy | High |
-| `FsNavUserProfileNameDirective` | `/fs-nav-frame/fs-nav-user-profile/directives/` | 🔴 Legacy | High |
-| `FsNavUserProfileSubNameDirective` | `/fs-nav-frame/fs-nav-user-profile/directives/` | 🔴 Legacy | High |
-| `FsNavUserProfileActionsDirective` | `/fs-nav-frame/fs-nav-user-profile/directives/` | 🔴 Legacy | High |
+| Directive                          | Location                                        | Status    | Priority |
+| ---------------------------------- | ----------------------------------------------- | --------- | -------- |
+| `FsNavFrameContentDirective`       | `/fs-nav-frame/directives/`                     | 🔴 Legacy | High     |
+| `FsNavFrameToolbarStartDirective`  | `/fs-nav-frame/nav-frame-toolbar/directives/`   | 🔴 Legacy | High     |
+| `FsNavFrameToolbarCenterDirective` | `/fs-nav-frame/nav-frame-toolbar/directives/`   | 🔴 Legacy | High     |
+| `FsNavFrameToolbarEndDirective`    | `/fs-nav-frame/nav-frame-toolbar/directives/`   | 🔴 Legacy | High     |
+| `FsNavUserProfileNameDirective`    | `/fs-nav-frame/fs-nav-user-profile/directives/` | 🔴 Legacy | High     |
+| `FsNavUserProfileSubNameDirective` | `/fs-nav-frame/fs-nav-user-profile/directives/` | 🔴 Legacy | High     |
+| `FsNavUserProfileActionsDirective` | `/fs-nav-frame/fs-nav-user-profile/directives/` | 🔴 Legacy | High     |
 
 ### **Services**
 
-| Service | Location | Status | Notes |
-|---------|----------|--------|-------|
+| Service             | Location                  | Status           | Notes                         |
+| ------------------- | ------------------------- | ---------------- | ----------------------------- |
 | `FsNavFrameService` | `/fs-nav-frame/services/` | 🟡 Needs Signals | Convert to signal-based state |
 
 ---
@@ -114,6 +114,7 @@ yarn test
 ```
 
 **Expected Issues**:
+
 - Breaking changes in Material components
 - Deprecated APIs removed
 - TypeScript compatibility
@@ -129,17 +130,19 @@ yarn test
 #### **Step 2.1: Convert FsNavFrameComponent**
 
 **Before** (`fs-nav-frame.component.ts`):
+
 ```typescript
 @Component({
   selector: 'fs-nav-frame',
   templateUrl: './fs-nav-frame.component.html',
   styleUrls: ['./fs-nav-frame.component.scss'],
-  standalone: false,  // ❌
+  standalone: false, // ❌
 })
-export class FsNavFrameComponent { }
+export class FsNavFrameComponent {}
 ```
 
 **After**:
+
 ```typescript
 import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -160,7 +163,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     // ... other dependencies
   ],
 })
-export class FsNavFrameComponent { }
+export class FsNavFrameComponent {}
 ```
 
 #### **Step 2.2: Remove NgModule files**
@@ -175,11 +178,13 @@ rm projects/ngx-mat-components/src/fs-nav-frame/fs-nav-frame.module.ts
 #### **Step 2.3: Update public-api.ts**
 
 **Before**:
+
 ```typescript
 export * from './fs-nav-frame/fs-nav-frame.module';
 ```
 
 **After**:
+
 ```typescript
 // Components
 export * from './fs-nav-frame/fs-nav-frame.component';
@@ -207,8 +212,11 @@ export * from './fs-nav-frame/fs-nav-frame.modules';
 #### **Step 3.1: Convert @Input() to input()**
 
 **Before**:
+
 ```typescript
-@Component({ /* ... */ })
+@Component({
+  /* ... */
+})
 export class FsNavFrameComponent {
   @Input() navFrameConfig: NavFrameConfig = {
     appName: '',
@@ -222,23 +230,26 @@ export class FsNavFrameComponent {
 ```
 
 **After**:
+
 ```typescript
 import { Component, input, computed } from '@angular/core';
 
-@Component({ /* ... */ })
+@Component({
+  /* ... */
+})
 export class FsNavFrameComponent {
   // Required inputs
   readonly navFrameConfig = input<NavFrameConfig>({
     appName: '',
   });
-  
+
   // Optional inputs with defaults
   readonly sizing = input<NavFrameSizing>({
     toolbarHeight: 3,
     sidebarWidthClosed: 4,
     sidebarWidthOpened: 18,
   });
-  
+
   // Computed properties
   readonly toolbarHeight = computed(() => this.sizing().toolbarHeight);
   readonly sidebarWidthClosed = computed(() => this.sizing().sidebarWidthClosed);
@@ -249,11 +260,14 @@ export class FsNavFrameComponent {
 #### **Step 3.2: Convert @Output() to output()**
 
 **Before**:
+
 ```typescript
-@Component({ /* ... */ })
+@Component({
+  /* ... */
+})
 export class FsNavFrameSidebarItemComponent {
   @Output() itemClicked = new EventEmitter<void>();
-  
+
   handleClick() {
     this.itemClicked.emit();
   }
@@ -261,13 +275,16 @@ export class FsNavFrameSidebarItemComponent {
 ```
 
 **After**:
+
 ```typescript
 import { Component, output } from '@angular/core';
 
-@Component({ /* ... */ })
+@Component({
+  /* ... */
+})
 export class FsNavFrameSidebarItemComponent {
   readonly itemClicked = output<void>();
-  
+
   handleClick() {
     this.itemClicked.emit();
   }
@@ -277,22 +294,22 @@ export class FsNavFrameSidebarItemComponent {
 #### **Step 3.3: Convert Services to Signals**
 
 **Before** (`fs-nav-frame.service.ts`):
+
 ```typescript
 @Injectable({ providedIn: 'root' })
 export class FsNavFrameService {
   menuState: MenuState = MenuState.CLOSED;
   menuStateEvent = new Subject<MenuState>();
-  
+
   toggleMenu() {
-    this.menuState = this.menuState === MenuState.CLOSED 
-      ? MenuState.OPENED 
-      : MenuState.CLOSED;
+    this.menuState = this.menuState === MenuState.CLOSED ? MenuState.OPENED : MenuState.CLOSED;
     this.menuStateEvent.next(this.menuState);
   }
 }
 ```
 
 **After**:
+
 ```typescript
 import { Injectable, signal, computed } from '@angular/core';
 
@@ -305,25 +322,23 @@ export enum MenuState {
 export class FsNavFrameService {
   // Private writable signal
   private readonly _menuState = signal<MenuState>(MenuState.CLOSED);
-  
+
   // Public readonly signal
   readonly menuState = this._menuState.asReadonly();
-  
+
   // Computed signals
   readonly isOpen = computed(() => this._menuState() === MenuState.OPENED);
   readonly isClosed = computed(() => this._menuState() === MenuState.CLOSED);
-  
+
   // Actions
   toggleMenu(): void {
-    this._menuState.update(state => 
-      state === MenuState.CLOSED ? MenuState.OPENED : MenuState.CLOSED
-    );
+    this._menuState.update(state => (state === MenuState.CLOSED ? MenuState.OPENED : MenuState.CLOSED));
   }
-  
+
   openMenu(): void {
     this._menuState.set(MenuState.OPENED);
   }
-  
+
   closeMenu(): void {
     this._menuState.set(MenuState.CLOSED);
   }
@@ -336,51 +351,48 @@ export class FsNavFrameService {
 
 **Goal**: Replace structural directives with native control flow
 
-#### **Step 4.1: Replace *ngIf with @if**
+#### **Step 4.1: Replace \*ngIf with @if**
 
 **Before**:
+
 ```html
 <div *ngIf="isClosed">Menu is closed</div>
-<div *ngIf="!isClosed; else openMenu">
-  Closed content
-</div>
-<ng-template #openMenu>
-  Open content
-</ng-template>
+<div *ngIf="!isClosed; else openMenu">Closed content</div>
+<ng-template #openMenu>Open content</ng-template>
 ```
 
 **After**:
+
 ```html
 @if (isClosed()) {
-  <div>Menu is closed</div>
-}
-
-@if (!isClosed()) {
-  <div>Closed content</div>
+<div>Menu is closed</div>
+} @if (!isClosed()) {
+<div>Closed content</div>
 } @else {
-  <div>Open content</div>
+<div>Open content</div>
 }
 ```
 
-#### **Step 4.2: Replace *ngFor with @for**
+#### **Step 4.2: Replace \*ngFor with @for**
 
 **Before**:
+
 ```html
-<div *ngFor="let item of items; trackBy: trackByFn">
-  {{ item.name }}
-</div>
+<div *ngFor="let item of items; trackBy: trackByFn">{{ item.name }}</div>
 ```
 
 **After**:
+
 ```html
 @for (item of items(); track item.id) {
-  <div>{{ item.name }}</div>
+<div>{{ item.name }}</div>
 }
 ```
 
 #### **Step 4.3: Replace [ngSwitch] with @switch**
 
 **Before**:
+
 ```html
 <div [ngSwitch]="menuState">
   <span *ngSwitchCase="'opened'">Open</span>
@@ -390,12 +402,15 @@ export class FsNavFrameService {
 ```
 
 **After**:
+
 ```html
-@switch (menuState()) {
-  @case ('opened') { <span>Open</span> }
-  @case ('closed') { <span>Closed</span> }
-  @default { <span>Unknown</span> }
-}
+@switch (menuState()) { @case ('opened') {
+<span>Open</span>
+} @case ('closed') {
+<span>Closed</span>
+} @default {
+<span>Unknown</span>
+} }
 ```
 
 ---
@@ -413,14 +428,15 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   selector: 'fs-nav-frame',
   templateUrl: './fs-nav-frame.component.html',
   styleUrls: ['./fs-nav-frame.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,  // ✅
+  changeDetection: ChangeDetectionStrategy.OnPush, // ✅
 })
-export class FsNavFrameComponent { }
+export class FsNavFrameComponent {}
 ```
 
 #### **Step 5.2: Verify Signal Updates**
 
 With signals, OnPush works automatically:
+
 - Signals trigger change detection when updated
 - No need for manual `ChangeDetectorRef.markForCheck()`
 
@@ -447,11 +463,7 @@ export interface SubNavItem {
   template: `
     <nav class="fs-nav-frame-subnav">
       @for (item of items(); track item.route) {
-        <a 
-          class="fs-nav-frame-subnav-item"
-          [routerLink]="item.route"
-          routerLinkActive="active"
-        >
+        <a class="fs-nav-frame-subnav-item" [routerLink]="item.route" routerLinkActive="active">
           @if (item.icon) {
             <i-lucide [img]="item.icon"></i-lucide>
           }
@@ -460,37 +472,39 @@ export interface SubNavItem {
       }
     </nav>
   `,
-  styles: [`
-    .fs-nav-frame-subnav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      padding: 1rem;
-      background: var(--mat-app-surface);
-      border-right: 1px solid var(--mat-app-outline);
-      width: 240px;
-    }
-    
-    .fs-nav-frame-subnav-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      text-decoration: none;
-      color: var(--mat-app-on-surface);
-      transition: background 0.2s;
-      
-      &:hover {
-        background: var(--mat-app-surface-variant);
+  styles: [
+    `
+      .fs-nav-frame-subnav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem;
+        background: var(--mat-app-surface);
+        border-right: 1px solid var(--mat-app-outline);
+        width: 240px;
       }
-      
-      &.active {
-        background: var(--mat-app-primary-container);
-        color: var(--mat-app-on-primary-container);
+
+      .fs-nav-frame-subnav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--mat-app-on-surface);
+        transition: background 0.2s;
+
+        &:hover {
+          background: var(--mat-app-surface-variant);
+        }
+
+        &.active {
+          background: var(--mat-app-primary-container);
+          color: var(--mat-app-on-primary-container);
+        }
       }
-    }
-  `],
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FsNavFrameSubnavComponent {
@@ -507,14 +521,14 @@ export class FsNavFrameSubnavComponent {
   <mat-drawer mode="side" [opened]="true" class="fs-nav-frame-sidebar">
     <ng-content select="fs-nav-frame-sidebar"></ng-content>
   </mat-drawer>
-  
+
   <!-- Sub Navigation (Level 2) -->
   @if (showSubNav()) {
-    <mat-drawer mode="side" [opened]="true" class="fs-nav-frame-subnav-drawer">
-      <ng-content select="fs-nav-frame-subnav"></ng-content>
-    </mat-drawer>
+  <mat-drawer mode="side" [opened]="true" class="fs-nav-frame-subnav-drawer">
+    <ng-content select="fs-nav-frame-subnav"></ng-content>
+  </mat-drawer>
   }
-  
+
   <!-- Main Content -->
   <mat-drawer-content>
     <ng-content select="fs-nav-frame-toolbar"></ng-content>
@@ -534,23 +548,23 @@ import { SubNavItem } from './fs-nav-frame-subnav.component';
 export class FsNavFrameSubnavService {
   private readonly _items = signal<SubNavItem[]>([]);
   private readonly _visible = signal(false);
-  
+
   readonly items = this._items.asReadonly();
   readonly visible = this._visible.asReadonly();
-  
+
   setItems(items: SubNavItem[]): void {
     this._items.set(items);
     this._visible.set(items.length > 0);
   }
-  
+
   show(): void {
     this._visible.set(true);
   }
-  
+
   hide(): void {
     this._visible.set(false);
   }
-  
+
   clear(): void {
     this._items.set([]);
     this._visible.set(false);
@@ -575,7 +589,7 @@ describe('FsNavFrameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FsNavFrameComponent],  // Standalone component
+      imports: [FsNavFrameComponent], // Standalone component
     }).compileComponents();
 
     fixture = TestBed.createComponent(FsNavFrameComponent);
@@ -594,7 +608,7 @@ describe('FsNavFrameComponent', () => {
       sidebarWidthOpened: 18,
     });
     fixture.detectChanges();
-    
+
     expect(component.toolbarHeight()).toBe(5);
   });
 });
@@ -611,10 +625,10 @@ describe('FsNavFrame with SubNav', () => {
       { label: 'Overview', route: '/tenants' },
       { label: 'Domains', route: '/tenants/domains' },
     ];
-    
+
     // Set items via service
     service.setItems(subNavItems);
-    
+
     // Verify visibility
     expect(service.visible()).toBe(true);
   });
@@ -636,6 +650,7 @@ yarn test:visual:approve
 ## 📊 Migration Checklist
 
 ### **Phase 1: Framework Upgrade**
+
 - [x] Update package.json to Angular 20 ✅
 - [x] Run `ng update` commands ✅
 - [x] Fix breaking changes ✅ (none needed!)
@@ -643,6 +658,7 @@ yarn test:visual:approve
 - [ ] Run tests (skipped - no tests yet)
 
 ### **Phase 2: Remove NgModules**
+
 - [x] Convert FsNavFrameComponent to standalone ✅
 - [x] Convert FsNavFrameToolbarComponent to standalone ✅
 - [x] Convert FsNavFrameSidebarComponent to standalone ✅
@@ -654,6 +670,7 @@ yarn test:visual:approve
 - [x] Update public-api.ts ✅
 
 ### **Phase 3: Signal-Based Components**
+
 - [ ] Convert @Input() to input() in FsNavFrameComponent
 - [ ] Convert @Input() to input() in FsNavFrameToolbarComponent
 - [ ] Convert @Input() to input() in FsNavFrameSidebarComponent
@@ -664,19 +681,22 @@ yarn test:visual:approve
 - [ ] Update component lifecycle hooks
 
 ### **Phase 4: Control Flow Migration**
-- [ ] Replace *ngIf with @if in all templates
-- [ ] Replace *ngFor with @for in all templates
+
+- [ ] Replace \*ngIf with @if in all templates
+- [ ] Replace \*ngFor with @for in all templates
 - [ ] Replace [ngSwitch] with @switch in all templates
 - [ ] Remove unused <ng-template> blocks
 - [ ] Verify template rendering
 
 ### **Phase 5: OnPush Change Detection**
+
 - [ ] Add OnPush to all components
 - [ ] Remove manual ChangeDetectorRef usage
 - [ ] Verify signal updates trigger CD
 - [ ] Performance testing
 
 ### **Phase 6: 2-Level Navigation**
+
 - [ ] Create FsNavFrameSubnavComponent
 - [ ] Create FsNavFrameSubnavService
 - [ ] Update FsNavFrame layout
@@ -685,6 +705,7 @@ yarn test:visual:approve
 - [ ] Document usage
 
 ### **Phase 7: Testing & Validation**
+
 - [ ] Update all unit tests
 - [ ] Add integration tests
 - [ ] Visual regression tests
@@ -699,6 +720,7 @@ yarn test:visual:approve
 ### **For Library Consumers**
 
 #### **Import Changes**
+
 ```typescript
 // ❌ OLD
 import { FsNavFrameModule } from '@fullstack-devops/ngx-mat-components';
@@ -708,7 +730,7 @@ import { FsNavFrameModule } from '@fullstack-devops/ngx-mat-components';
 })
 
 // ✅ NEW
-import { 
+import {
   FsNavFrameComponent,
   FsNavFrameToolbarComponent,
   FsNavFrameSidebarComponent,
@@ -725,20 +747,24 @@ import {
 ```
 
 #### **Template Changes**
+
 ```html
 <!-- ❌ OLD -->
 <div *ngIf="frameService.menuState === MenuState.OPENED">Open</div>
 
 <!-- ✅ NEW -->
 @if (frameService.menuState() === MenuState.OPENED) {
-  <div>Open</div>
+<div>Open</div>
 }
 ```
 
 #### **Service API Changes**
+
 ```typescript
 // ❌ OLD
-frameService.menuStateEvent.subscribe(state => { /* ... */ });
+frameService.menuStateEvent.subscribe(state => {
+  /* ... */
+});
 
 // ✅ NEW
 effect(() => {
@@ -761,44 +787,47 @@ effect(() => {
 
 ## 🎯 Success Metrics
 
-| Metric | Before | Target | Actual |
-|--------|--------|--------|--------|
-| **Bundle Size** | ~450KB | < 400KB | TBD |
-| **Build Time** | ~30s | < 25s | TBD |
-| **Test Coverage** | 75% | > 85% | TBD |
-| **Performance Score** | 85 | > 90 | TBD |
-| **Lighthouse Score** | 88 | > 95 | TBD |
+| Metric                | Before | Target  | Actual |
+| --------------------- | ------ | ------- | ------ |
+| **Bundle Size**       | ~450KB | < 400KB | TBD    |
+| **Build Time**        | ~30s   | < 25s   | TBD    |
+| **Test Coverage**     | 75%    | > 85%   | TBD    |
+| **Performance Score** | 85     | > 90    | TBD    |
+| **Lighthouse Score**  | 88     | > 95    | TBD    |
 
 ---
 
 ## 📅 Timeline
 
-| Phase | Duration | Status |
-|-------|----------|--------|
-| **Phase 1: Framework Upgrade** | 2 days | ✅ **DONE** (Oct 18, 2025) |
-| **Phase 2: Remove NgModules** | 3 days | � In Progress |
-| **Phase 3: Signal-Based** | 5 days | 🔜 Pending |
-| **Phase 4: Control Flow** | 2 days | 🔜 Pending |
-| **Phase 5: OnPush** | 1 day | 🔜 Pending |
-| **Phase 6: 2-Level Nav** | 3 days | 🔜 Pending |
-| **Phase 7: Testing** | 4 days | 🔜 Later |
-| **Total** | **~3 weeks** | � In Progress |
+| Phase                          | Duration     | Status                     |
+| ------------------------------ | ------------ | -------------------------- |
+| **Phase 1: Framework Upgrade** | 2 days       | ✅ **DONE** (Oct 18, 2025) |
+| **Phase 2: Remove NgModules**  | 3 days       | � In Progress              |
+| **Phase 3: Signal-Based**      | 5 days       | 🔜 Pending                 |
+| **Phase 4: Control Flow**      | 2 days       | 🔜 Pending                 |
+| **Phase 5: OnPush**            | 1 day        | 🔜 Pending                 |
+| **Phase 6: 2-Level Nav**       | 3 days       | 🔜 Pending                 |
+| **Phase 7: Testing**           | 4 days       | 🔜 Later                   |
+| **Total**                      | **~3 weeks** | � In Progress              |
 
 ---
 
 ## 🐛 Known Issues & Workarounds
 
 ### **Issue 1: Angular Material 20 Breaking Changes**
+
 - **Problem**: Material components API changes
 - **Workaround**: Check Material changelog, update usages
 - **Reference**: https://github.com/angular/components/releases/tag/20.0.0
 
 ### **Issue 2: TypeScript Strict Mode**
+
 - **Problem**: Stricter type checking in Angular 20
 - **Workaround**: Fix type errors incrementally
 - **Reference**: Use `// @ts-expect-error` as temporary fix
 
 ### **Issue 3: Zone.js Compatibility**
+
 - **Problem**: Some RxJS patterns may not work with OnPush
 - **Workaround**: Convert to signals, use `effect()` instead of `subscribe()`
 

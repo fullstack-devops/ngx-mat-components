@@ -43,8 +43,7 @@ import { FsCalendarModule } from '@fullstack-devops/ngx-mat-components';
   [monthsBefore]="monthsBefore"
   [monthsAfter]="monthsAfter"
   [placeholderDay]="placeholder"
-  (selection)="onSelection($event)">
-</fs-calendar-panels>
+  (selection)="onSelection($event)"></fs-calendar-panels>
 ```
 
 ### Calendar Table
@@ -135,7 +134,7 @@ export interface CalendarTableEntry {
 ## Theming & Styling
 
 - The module supports Material 3 theming.
-- SCSS mixin: `fs-calendar-theme` ([styles/fs-calendar/_theming.scss](../projects/ngx-mat-components/styles/fs-calendar/_theming.scss))
+- SCSS mixin: `fs-calendar-theme` ([styles/fs-calendar/\_theming.scss](../projects/ngx-mat-components/styles/fs-calendar/_theming.scss))
 - To use the theme in your styles:
   ```scss
   @use '@fullstack-devops/ngx-mat-components' as fsc;

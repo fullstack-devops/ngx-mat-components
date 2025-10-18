@@ -1,13 +1,16 @@
 import { Component, ContentChild, ElementRef, input, effect, computed, AfterViewInit, OnDestroy, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { MatButtonModule } from '@angular/material/button';
 import { NavFrameConfig, NavFrameSizing } from './fs-nav-frame.modules';
 import { FsNavFrameService, MenuState } from './services/fs-nav-frame.service';
 
 @Component({
   selector: 'fs-nav-frame',
+  imports: [MatButtonModule],
   templateUrl: './fs-nav-frame.component.html',
   styleUrls: ['./fs-nav-frame.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [FsNavFrameService],
   host: {
     class: 'fs-nav-frame',
     'data-component-id': 'fs-nav-frame-unique',
