@@ -28,20 +28,11 @@ import {
   PaintBucketIcon,
 } from 'lucide-angular';
 import {
-  FsNavFrameComponent,
-  FsNavFrameSidebar,
-  FsNavFrameSidebarItemComponent,
-  FsNavUserProfileComponent,
-  FsNavUserProfileActionsDirective,
-  FsNavFrameToolbarComponent,
-  FsNavFrameToolbarStartDirective,
-  FsNavFrameToolbarCenterDirective,
-  FsNavFrameToolbarEndDirective,
-  FsNavFrameContentDirective,
+  FsNavFrameModule,
+  FsThemeMenuModule,
   NavFrameConfig,
   NavFrameSizing,
   NavRoutes,
-  FsThemeMenu,
 } from 'projects/ngx-mat-components/src/public-api';
 import { MockUserService } from './services/mockuser.service';
 
@@ -62,18 +53,9 @@ import { MockUserService } from './services/mockuser.service';
     MatCardModule,
     MatSlideToggleModule,
     MatDialogModule,
-    /* Lib components */
-    FsNavFrameComponent,
-    FsNavFrameSidebar,
-    FsNavFrameSidebarItemComponent,
-    FsNavUserProfileComponent,
-    FsNavUserProfileActionsDirective,
-    FsNavFrameToolbarComponent,
-    FsNavFrameToolbarStartDirective,
-    FsNavFrameToolbarCenterDirective,
-    FsNavFrameToolbarEndDirective,
-    FsNavFrameContentDirective,
-    FsThemeMenu,
+    /* Lib components - Barrel Modules */
+    ...FsNavFrameModule,
+    ...FsThemeMenuModule,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',

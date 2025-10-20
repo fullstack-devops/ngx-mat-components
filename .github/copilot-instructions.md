@@ -13,6 +13,21 @@ Always use **yarn** instead of npm for all package management operations:
 - Use `yarn build` instead of `npm run build`
 - Use `yarn test` instead of `npm test`
 
+## Library Package.json Peer Dependencies
+
+**CRITICAL**: When upgrading Angular versions, ALWAYS update the peer dependencies in `projects/ngx-mat-components/package.json` to match:
+
+```json
+"peerDependencies": {
+  "@angular/common": "^X.0.0",   // Must match Angular version
+  "@angular/core": "^X.0.0",      // Must match Angular version
+  "@angular/material": "^X.0.0",  // Must match Angular version
+  "date-fns": "^4.0.0"
+}
+```
+
+Example: For Angular 20, use `^20.0.0` for all Angular peer dependencies. This prevents peer dependency warnings when consuming the library.
+
 ## Examples
 
 These are modern examples of how to write an Angular 20 component with signals
