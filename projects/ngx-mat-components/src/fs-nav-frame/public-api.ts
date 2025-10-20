@@ -17,3 +17,6 @@ export { FsNavFrameToolbarEndDirective } from './nav-frame-toolbar/directives/fs
 export { FsNavFrameToolbarStartDirective } from './nav-frame-toolbar/directives/fs-nav-frame-toolbar-start.directive';
 export { FsNavFrameToolbarComponent } from './nav-frame-toolbar/fs-nav-frame-toolbar.component';
 export { FsNavFrameService } from './services/fs-nav-frame.service';
+
+// Barrel Module - Import ALL components at once (like Angular Material)
+export { FsNavFrameModule, FS_NAV_FRAME_COMPONENTS } from './fs-nav-frame.module';
